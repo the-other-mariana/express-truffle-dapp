@@ -15,24 +15,18 @@ const ganache = require("ganache-cli");
 const Web3 = require("web3");
 //var web3 = new Web3(ganache.provider());
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
-const fs = require('fs');
+var tools = require("./routes/fs-tools.js");
 
 
 //web3.eth.getAccounts().then(e => console.log(e));
 var accs = [];
 web3.eth.getAccounts(function(err, accountList) {
         if(!err){
-          //console.log(accountList);
           for(var i = 0; i < accountList.length; i++){
-            //accs.push(accountList[i]);
             console.log(accountList[i]);
-            fs.appendFile("ganache-accounts.txt", accountList[i] + '\n', function (err) {
-                if (err) throw err;
-                console.log('Saved!');
-            });
+            tools.register({ file: "ganache-accounts.txt", data: accountList[i] });
           }
         }
-
 });
 
 

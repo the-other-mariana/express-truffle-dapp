@@ -3,6 +3,9 @@
 {{# if success }}
   <section>
     <h2>Sucessful validation!</h2>
+    <form>
+      <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
+    </form>
   </section>
 {{else}}
   {{# if errors}}
@@ -30,7 +33,6 @@
     </div>
     <button type = "submit" class = "common-button" formaction="/login" formmethod="post">Sign up</button>
     <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
-    <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
   </form>
 
 
