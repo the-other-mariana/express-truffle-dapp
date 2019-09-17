@@ -24,6 +24,8 @@ router.post('/login', function(req, res, next){
   //check validity with validator pckg function
   //req.check('address', 'invalid email address').isEmail(); // email has to match name
   //var valid = tools.check({ file: "accounts.txt", account: req.body.address });
+
+  // here is to check whether the input account is valid or not
   var valid = tools.check({ file: "ganache-accounts.txt", account: req.body.address });
   req.check('password', 'Password is invalid').isLength({min: 4}).equals(req.body.confirmPassword);
 
