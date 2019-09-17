@@ -1,0 +1,38 @@
+<!-- hbs will always put this content inside {{{ body }}} part -->
+<h1>{{ title }}</h1>
+{{# if success }}
+  <section>
+    <h2>Sucessful validation!</h2>
+  </section>
+{{else}}
+  {{# if errors}}
+    <section class = "errors">
+      <ul>
+        {{# each errors }}
+          <li>{{ this.msg }}</li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+
+  <form>
+    <div class = "input">
+      <label for = "address" style = "display: block;"> Address </label>
+      <input type = "text" id = "address" name = "address">
+    </div>
+    <div class = "input">
+      <label for = "password" style = "display: block;"> Password </label>
+      <input type = "password" id = "password" name = "password">
+    </div>
+    <div class = "input">
+      <label for = "confirmPassword" style = "display: block;"> Confirm Password </label>
+      <input type = "password" id = "confirmPassword" name = "confirmPassword">
+    </div>
+    <button type = "submit" class = "common-button" formaction="/login" formmethod="post">Sign up</button>
+    <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
+    <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
+  </form>
+
+
+
+{{/if}}

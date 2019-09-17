@@ -1,0 +1,28 @@
+body {
+  padding: 50px;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+input {
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.common-button{
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 4px;
+  margin:5px;
+  padding: 16px;
+  background-color: #5D8AA8;
+  color: white;
+  border: none;
+}
+
+.input{
+  margin: 5px;
+}
