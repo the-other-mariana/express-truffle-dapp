@@ -24,6 +24,7 @@ web3.eth.getAccounts(function(err, accountList) {
         if(!err){
           for(var i = 0; i < accountList.length; i++){
             console.log(accountList[i]);
+            // append to file
             tools.register({ file: "ganache-accounts.txt", data: accountList[i] });
           }
         }
