@@ -54,6 +54,12 @@ router.post('/market', function(req, res, next){
   req.session.errors = null;
 });
 
+// if user wants to reload page:
+router.get('/market', function(req, res, next){
+  res.render('blockchain-market', { title: 'Market', errors: req.session.errors });
+  req.session.errors = null;
+});
+
 router.post('/register/submit-account', function(req, res, next){
   var inputAddress = req.body.newAddress;
   var accounts = "";
