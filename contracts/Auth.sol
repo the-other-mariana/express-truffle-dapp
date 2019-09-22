@@ -1,29 +1,29 @@
 pragma solidity ^0.4.18;
 
 contract Auth {
-  // state variables
-  address creator;
-  string username;
-  string password;
 
-  // create a new user
-  // call this:
-  // Auth.deployed().then(function(instance){app = instance;})
-  // app.createUser("mariana", "mar123", {from: web3.eth.accounts[1]}) <- last param is metadata allowed when
-  // there is a transaction (function modifies state vars), and specifies the msg.sender as account[1] (account that calls the function)
-  function createUser(string _username, string _password) public {
-    creator = msg.sender;
-    username = _username;
-    password = _password;
+  struct User {
+    uint id;
+    address creator;
+    string username;
+    string password;
   }
 
-  // function that returns if the input account is a valid user
+  mapping(uint => User) public users;
+  uint userCounter;
+
+  function createUser(string _username, string _password) public {
+    userCounter++;
+    users[userCounter] = User(userCounter, msg.sender, _username, _password);
+  }
+
   function existsUser(string _username, string _password) public view returns (bool result){
-    if (keccak256(_username) == keccak256(username) && keccak256(_password) == keccak256(password)){
-      return true;
-    }else{
-      return false;
+    for(uint i = 0; i <= userCounter; i++){
+      if(keccak256(users[i].username) == keccak256(_username) && keccak256(users[i].password) == keccak256(_password)){
+        return true;
+      }
     }
+    return false;
   }
 
 }

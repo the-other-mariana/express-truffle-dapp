@@ -55,7 +55,7 @@ router.post('/login', function(req, res, next){
       console.log("unsuccessfull validation");
     }
   }).catch(function(err){
-    console.log("not deployed");
+    console.log("failed to deploy");
     console.log(err);
     res.redirect('/');
   });
@@ -90,10 +90,8 @@ router.post('/register/submit-account', function(req, res, next){
     }
   }).then(function(account){
     coinbase = account;
-
+    
     console.log(json);
-
-
 
     App.contracts.Auth.deployed().then(function(instance) {
       return instance.createUser(inputUsername, inputPassword, {from: coinbase});
@@ -109,16 +107,6 @@ router.post('/register/submit-account', function(req, res, next){
     });
 
   });
-
-  /*
-  var accounts = "";
-
-  if (inputAddress != ""){
-    tools.register({ file: "accounts.txt", data: inputAddress });
-    res.redirect('/');
-  }else{
-    res.redirect("/register");
-  }*/
 
 });
 
