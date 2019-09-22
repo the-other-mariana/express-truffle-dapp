@@ -1,8 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-
+var getJSON = require('get-json');
+var json = require("../build/contracts/Auth.json");
+var contract = require("truffle-contract");
+const fetch = require("node-fetch");
+const ganache = require("ganache-cli");
+const Web3 = require("web3");
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 var tools = require("./fs-tools.js");
+var contractAuth;
+
+
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
@@ -61,7 +70,39 @@ router.get('/market', function(req, res, next){
 });
 
 router.post('/register/submit-account', function(req, res, next){
-  var inputAddress = req.body.newAddress;
+  var inputUsername = req.body.username;
+  var inputPassword = req.body.password;
+  var coinbase;
+
+  web3.eth.getCoinbase(function(err, account){
+    if (err != null){
+      console.log(err);
+    }
+  }).then(function(account){
+    coinbase = account;
+
+    console.log(json);
+    contractAuth = contract(json);
+    contractAuth.setProvider(new Web3.providers.HttpProvider('http://localhost:7545'));
+
+    contractAuth.deployed().then(function(instance) {
+      return instance.createUser(inputUsername, inputPassword, {from: coinbase});
+    }).then(function(user){
+
+      // the user info returned from the contract function call
+      console.log("user: ");
+      console.log(user);
+
+      res.redirect("/");
+    }).catch(function(err) {
+      console.error(err.message);
+    });
+
+  });
+
+
+
+  /*
   var accounts = "";
 
   if (inputAddress != ""){
@@ -69,7 +110,7 @@ router.post('/register/submit-account', function(req, res, next){
     res.redirect('/');
   }else{
     res.redirect("/register");
-  }
+  }*/
 
 });
 
