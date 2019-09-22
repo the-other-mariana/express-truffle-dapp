@@ -38,6 +38,7 @@ App = {
   },
 
   initContract: function() {
+    // json located inside build/contracts/ChainList.json
     $.getJSON('ChainList.json', function(chainListArtifact) {
       // get the contract artifact file and use it to instantiate a truffle contract abstraction
       App.contracts.ChainList = TruffleContract(chainListArtifact);
@@ -160,7 +161,7 @@ App = {
         from: App.account,
         value: web3.toWei(_price, "ether"),
         gas: 500000
-      }); // metadata from the transaction as argument 
+      }); // metadata from the transaction as argument
     }).catch(function(error){
       console.error(error);
     });

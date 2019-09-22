@@ -47,6 +47,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(expressValidator()); // sets it to work
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'build/contracts')));
 app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false}));
 
 // all routing starting with / goes to index
