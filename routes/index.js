@@ -25,6 +25,18 @@ App.contracts.Auth.setProvider(App.web3Provider);
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors });
   req.session.errors = null;
+
+// get number of users from contract
+  App.contracts.Auth.deployed().then(function(instance){
+    return instance.getNumberOfUsers();
+  }).then(function(users){
+    console.log("users: ");
+    console.log(users);
+  }).catch(function(err){
+    console.log("failed contract call");
+    console.log(err);
+  });
+
 });
 
 router.get('/users', function(req, res, next) {
@@ -90,7 +102,7 @@ router.post('/register/submit-account', function(req, res, next){
     }
   }).then(function(account){
     coinbase = account;
-    
+
     console.log(json);
 
     App.contracts.Auth.deployed().then(function(instance) {

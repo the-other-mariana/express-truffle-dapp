@@ -26,4 +26,18 @@ contract Auth {
     return false;
   }
 
+  function getAllUsers() public view returns(uint[]){
+    uint[] memory userids = new uint[](userCounter);
+
+    for(uint i = 0; i <= userCounter; i++){
+      userids[i] = users[i].id;
+    }
+
+    return userids;
+  }
+
+  function getNumberOfUsers() public view returns(uint number){
+    return userCounter;
+  }
+
 }
