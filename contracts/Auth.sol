@@ -17,4 +17,13 @@ contract Auth {
     password = _password;
   }
 
+  // function that returns if the input account is a valid user
+  function existsUser(string _username, string _password) public view returns (bool result){
+    if (keccak256(_username) == keccak256(username) && keccak256(_password) == keccak256(password)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }
