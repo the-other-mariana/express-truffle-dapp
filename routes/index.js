@@ -11,7 +11,15 @@ var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 var tools = require("./fs-tools.js");
 var contractAuth;
 
+App = {
+  web3Provider: null,
+  contracts: {},
+  account: 0x0
+};
 
+App.contracts.Auth = contract(json);
+App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+App.contracts.Auth.setProvider(App.web3Provider);
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,26 +38,28 @@ router.get('/users/detail', function(req, res, next) {
 
 router.post('/login', function(req, res, next){
 
-  //check validity with validator pckg function
-  //req.check('address', 'invalid email address').isEmail(); // email has to match name
-  //var valid = tools.check({ file: "accounts.txt", account: req.body.address });
+  var loginusername = req.body.loginusername;
+  var loginpassword = req.body.loginpassword;
 
-  // here is to check whether the input account is valid or not
-  var valid = tools.check({ file: "ganache-accounts.txt", account: req.body.address });
-  req.check('password', 'Password is invalid').isLength({min: 4}).equals(req.body.confirmPassword);
-
-  var errors = req.validationErrors();
-  if(errors){
-    req.session.errors = errors;
-    req.session.success = false;
-  }else{
-    if(valid == true){
+  App.contracts.Auth.deployed().then(function(instance){
+    return instance.existsUser(loginusername, loginpassword);
+  }).then(function(exists){
+    console.log(exists);
+    if(exists == true){
       req.session.success = true;
+      console.log("successfull validation");
+      res.redirect('/');
+    }else{
+      req.session.success = false;
+      res.redirect('/');
+      console.log("unsuccessfull validation");
     }
-    console.log("input account is: " + req.body.address);
-  }
-  // following action: this will call 1.
-  res.redirect('/');
+  }).catch(function(err){
+    console.log("not deployed");
+    console.log(err);
+    res.redirect('/');
+  });
+
 
 });
 
@@ -82,10 +92,10 @@ router.post('/register/submit-account', function(req, res, next){
     coinbase = account;
 
     console.log(json);
-    contractAuth = contract(json);
-    contractAuth.setProvider(new Web3.providers.HttpProvider('http://localhost:7545'));
 
-    contractAuth.deployed().then(function(instance) {
+
+
+    App.contracts.Auth.deployed().then(function(instance) {
       return instance.createUser(inputUsername, inputPassword, {from: coinbase});
     }).then(function(user){
 
@@ -99,8 +109,6 @@ router.post('/register/submit-account', function(req, res, next){
     });
 
   });
-
-
 
   /*
   var accounts = "";
