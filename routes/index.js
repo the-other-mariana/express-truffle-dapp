@@ -10,6 +10,7 @@ const Web3 = require("web3");
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 var tools = require("./fs-tools.js");
 var contractAuth;
+var settingup = false;
 
 App = {
   web3Provider: null,
@@ -79,7 +80,24 @@ router.post('/login', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
-  res.render('register', { title: 'Register Account', errors: req.session.errors });
+  App.contracts.Auth.deployed().then(function(instance){
+    return instance.getNumberOfUsers();
+  }).then(function(number){
+    console.log(number);
+    if(number == 0){
+      console.log("not set up");
+      settingup = true;
+      res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup });
+    }else{
+      console.log("already set up");
+      settingup = false;
+      res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup });
+    }
+  }).catch(function(err){
+    console.log(err);
+  });
+
+  //res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup});
   req.session.errors = null;
 });
 
