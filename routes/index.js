@@ -23,12 +23,13 @@ App.contracts.Auth.setProvider(App.web3Provider);
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors });
+  res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
 
-// get number of users from contract
+// get users from contract
   App.contracts.Auth.deployed().then(function(instance){
-    return instance.getNumberOfUsers();
+    //return instance.getNumberOfUsers();
+    return instance.getAllUsers();
   }).then(function(users){
     console.log("users: ");
     console.log(users);
@@ -59,10 +60,12 @@ router.post('/login', function(req, res, next){
     console.log(exists);
     if(exists == true){
       req.session.success = true;
+      req.session.user = loginusername;
       console.log("successfull validation");
       res.redirect('/');
     }else{
       req.session.success = false;
+      req.session.user = "";
       res.redirect('/');
       console.log("unsuccessfull validation");
     }
@@ -94,7 +97,12 @@ router.get('/market', function(req, res, next){
 router.post('/register/submit-account', function(req, res, next){
   var inputUsername = req.body.username;
   var inputPassword = req.body.password;
+  var loggedUser = req.session.user;
   var coinbase;
+
+  if(typeof loggedUser === 'undefined'){
+    loggedUser = "none";
+  }
 
   web3.eth.getCoinbase(function(err, account){
     if (err != null){
@@ -106,7 +114,7 @@ router.post('/register/submit-account', function(req, res, next){
     console.log(json);
 
     App.contracts.Auth.deployed().then(function(instance) {
-      return instance.createUser(inputUsername, inputPassword, {from: coinbase});
+      return instance.createUser(inputUsername, inputPassword, loggedUser, {from: coinbase});
     }).then(function(user){
 
       // the user info returned from the contract function call

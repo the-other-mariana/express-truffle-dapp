@@ -11,23 +11,10 @@ contract Auth {
 
   mapping(uint => User) public users;
   uint userCounter;
-  string superuser;
 
-  function createUser(string _username, string _password, string _loggedUser) public returns (bool result) {
-    if(userCounter == 0){
-      userCounter++;
-      users[userCounter] = User(userCounter, msg.sender, _username, _password);
-    }else{
-      if(keccak256(_loggedUser) == keccak256(superuser)){
-        userCounter++;
-        users[userCounter] = User(userCounter, msg.sender, _username, _password);
-      }
-    }
-
-    if (userCounter == 1){
-      superuser = _username;
-    }
-    return true;
+  function createUser(string _username, string _password) public {
+    userCounter++;
+    users[userCounter] = User(userCounter, msg.sender, _username, _password);
   }
 
   function existsUser(string _username, string _password) public view returns (bool result){

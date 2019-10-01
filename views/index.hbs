@@ -2,9 +2,10 @@
 <h1>{{ title }}</h1>
 {{# if success }}
   <section>
-    <h2>Sucessful validation!</h2>
+    <h2>Hello, {{ user }}</h2>
     <form>
       <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
+      <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
     </form>
   </section>
 {{else}}
