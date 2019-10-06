@@ -15,7 +15,8 @@ var settingup = false;
 App = {
   web3Provider: null,
   contracts: {},
-  account: 0x0
+  account: 0x0,
+  userslist: []
 };
 
 App.contracts.Auth = contract(json);
@@ -27,13 +28,36 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
 
+  var authInstance;
 // get users from contract
   App.contracts.Auth.deployed().then(function(instance){
     //return instance.getNumberOfUsers();
+    authInstance = instance;
     return instance.getAllUsers();
-  }).then(function(users){
+  }).then(function(userIds){
     console.log("users: ");
-    console.log(users);
+    console.log(userIds);
+
+    //$('#usersRow').empty();
+
+    for(var i = 0; i < userIds.length; i++){
+      var userId = userIds[i];
+      console.log(userId);
+      authInstance.getuser(userId.toNumber()).then(function(user){
+        //console.log(user);
+        console.log("User " + user[0] + " password: " + user[1]);
+        /*
+        var usersRow = $('#usersRow');
+        var articleTemplate = $('$userTemplate');
+        articleTemplate.find('.panel-title').text("User " + user[0]);
+        articleTemplate.find('.user-name').text(user[2]);
+        articleTemplate.find('.user-password').text(user[3]);
+
+        usersRow.append(userTemplate.html());*/
+      }).catch(function(err){
+        console.log("failed user mapping");
+      });
+    }
   }).catch(function(err){
     console.log("failed contract call");
     console.log(err);
@@ -41,8 +65,39 @@ router.get('/', function(req, res, next) {
 
 });
 
+
+// for AJAX resource
 router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
+  //var data = "lorem ipsum dolor";
+  //res.send(data);
+  var authInstance;
+  App.contracts.Auth.deployed().then(function(instance){
+    authInstance = instance;
+    return instance.getAllUsers();
+  }).then(function(userIds){
+    App.userslist = [];
+    for(var i = 0; i < userIds.length; i++){
+      var userId = userIds[i];
+      console.log(userId);
+      authInstance.getuser(userId.toNumber()).then(function(user){
+        console.log("User " + user[0] + " password: " + user[1]);
+        App.userslist.push({id: userId.toNumber(), username: user[0], password: user[1]});
+
+      }).catch(function(err){
+        console.log("failed user mapping");
+        console.log(err);
+      });
+    }
+  }).catch(function(err){
+    console.log("failed contract call");
+    console.log(err);
+  });
+  /*
+  if(App.userslist.length > 0){
+    res.send(App.userslist);
+  }*/
+  res.send(App.userslist);
+
 });
 
 // goes here if we type localhost:8000/users/detail

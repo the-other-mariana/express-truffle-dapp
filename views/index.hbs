@@ -30,8 +30,32 @@
     </div>
     <button type = "submit" class = "common-button" formaction="/login" formmethod="post">Sign up</button>
     <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
-  </form>
 
+  </form>
+  <button class = "common-button" id = "users-button"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>    Users</button>
+
+
+  <div id="userTemplate" style="display: none;">
+    <div class="row-lg-12">
+      <div class="panel panel-default panel-user">
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+        </div>
+        <div class="panel-body">
+          <strong>Username:</strong> <span class="user-name"></span><br/>
+          <strong>Password:</strong> <span class="user-password"></span><br/>
+        </div>
+        <div class="panel-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 {{/if}}
+<div id="usersRow" class="row">
+      <!-- ARTICLES LOAD HERE -->
+</div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/update-users.js"></script>
