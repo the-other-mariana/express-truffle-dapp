@@ -25,7 +25,7 @@ App.contracts.Auth.setProvider(App.web3Provider);
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Blockchain Login', success: req.session.success, errors: req.session.errors, user: req.session.user });
+  res.render('index', { title: 'Blockchain Dapp', success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
 
   var authInstance;
@@ -65,16 +65,14 @@ router.get('/', function(req, res, next) {
 
 });
 
-
 // for AJAX resource
 router.get('/users', function(req, res, next) {
-  //var data = "lorem ipsum dolor";
-  //res.send(data);
   var authInstance;
   App.contracts.Auth.deployed().then(function(instance){
     authInstance = instance;
     return instance.getAllUsers();
   }).then(function(userIds){
+    var tasksToGo = userIds.length;
     App.userslist = [];
     for(var i = 0; i < userIds.length; i++){
       var userId = userIds[i];
@@ -82,7 +80,10 @@ router.get('/users', function(req, res, next) {
       authInstance.getuser(userId.toNumber()).then(function(user){
         console.log("User " + user[0] + " password: " + user[1]);
         App.userslist.push({id: userId.toNumber(), username: user[0], password: user[1]});
-
+        if (--tasksToGo === 0) {
+            // No tasks left, good to go
+              res.send(App.userslist);
+        }
       }).catch(function(err){
         console.log("failed user mapping");
         console.log(err);
@@ -92,11 +93,10 @@ router.get('/users', function(req, res, next) {
     console.log("failed contract call");
     console.log(err);
   });
-  /*
-  if(App.userslist.length > 0){
-    res.send(App.userslist);
-  }*/
-  res.send(App.userslist);
+
+
+
+  //res.send(App.userslist);
 
 });
 

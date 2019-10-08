@@ -1,12 +1,18 @@
 <!-- hbs will always put this content inside {{{ body }}} part -->
-<h1>{{ title }}</h1>
+
 {{# if success }}
   <section>
-    <h2>Hello, {{ user }}</h2>
-    <form>
-      <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
-      <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
-    </form>
+    <div class="row panel panel-success">
+
+      <div class="panel-heading"><h4>Hello, {{ user }}</h4></div>
+      <div class="panel-body">
+        <form>
+          <button type = "submit" class = "common-button" formaction="/market" formmethod="post">Go to Market</button>
+          <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
+        </form>
+      </div>
+
+    </div>
   </section>
 {{else}}
   {{# if errors}}
@@ -18,44 +24,56 @@
       </ul>
     </section>
   {{/if}}
+  <div class="row panel panel-default">
 
-  <form>
-    <div class = "input">
-      <label for = "loginusername" style = "display: block;"> Username: </label>
-      <input type = "text" id = "loginusername" name = "loginusername">
-    </div>
-    <div class = "input">
-      <label for = "loginpassword" style = "display: block;"> Password: </label>
-      <input type = "password" id = "loginpassword" name = "loginpassword">
-    </div>
-    <button type = "submit" class = "common-button" formaction="/login" formmethod="post">Sign up</button>
-    <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
-
-  </form>
-  <button class = "common-button" id = "users-button"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>    Users</button>
-
-
-  <div id="userTemplate" style="display: none;">
-    <div class="row-lg-12">
-      <div class="panel panel-default panel-user">
-        <div class="panel-heading">
-          <h3 class="panel-title"></h3>
-        </div>
-        <div class="panel-body">
-          <strong>Username:</strong> <span class="user-name"></span><br/>
-          <strong>Password:</strong> <span class="user-password"></span><br/>
-        </div>
-        <div class="panel-footer">
-
-        </div>
+      <div class="panel-heading">Log in with your account: </div>
+      <div class="panel-body">
+        <form>
+          <div class = "input">
+            <label for = "loginusername" style = "display: block;"> Username: </label>
+            <input type = "text" id = "loginusername" name = "loginusername">
+          </div>
+          <div class = "input">
+            <label for = "loginpassword" style = "display: block;"> Password: </label>
+            <input type = "password" id = "loginpassword" name = "loginpassword">
+          </div>
+          <button type = "submit" class = "common-button" formaction="/login" formmethod="post">Sign up</button>
+          <button type = "submit" class = "common-button" formaction="/register" formmethod="post">Register</button>
+        </form>
       </div>
-    </div>
+
   </div>
 
 
 {{/if}}
+
+<div class="row panel panel-default">
+  <div class="panel-heading clearfix">
+    <div class="panel-title">
+      <button class = "common-button" id = "users-button"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>    Users</button>
+    </div>
+  </div>
+  <ul id="events" class="collapse list-group"></ul>
+</div>
+
 <div id="usersRow" class="row">
       <!-- ARTICLES LOAD HERE -->
+</div>
+<div id="userTemplate" style="display: none;">
+  <div class="row-lg-12">
+    <div class="panel panel-default panel-user">
+      <div class="panel-heading">
+        <h3 class="panel-title"></h3>
+      </div>
+      <div class="panel-body">
+        <strong>Username:</strong> <span class="user-name"></span><br/>
+        <strong>Password:</strong> <span class="user-password"></span><br/>
+      </div>
+      <div class="panel-footer">
+
+      </div>
+    </div>
+  </div>
 </div>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/update-users.js"></script>
