@@ -82,7 +82,7 @@ router.get('/users', function(req, res, next) {
         App.userslist.push({id: userId.toNumber(), username: user[0], password: user[1]});
         if (--tasksToGo === 0) {
             // No tasks left, good to go
-              res.send(App.userslist);
+            res.send(App.userslist);
         }
       }).catch(function(err){
         console.log("failed user mapping");
@@ -93,11 +93,6 @@ router.get('/users', function(req, res, next) {
     console.log("failed contract call");
     console.log(err);
   });
-
-
-
-  //res.send(App.userslist);
-
 });
 
 // goes here if we type localhost:8000/users/detail
