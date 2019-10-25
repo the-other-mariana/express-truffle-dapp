@@ -11,6 +11,7 @@ $(document).ready(function() {
         $('#usersRow').empty();
         var usersRow = $('#usersRow');
         // maaaster
+        // master 
         //$('#usersRow').html(data[0].username + ": " + data[0].password + " " + data[1].username + ": " + data[1].password);
         for(var i = 0; i < data.length; i++){
           var userTemplate = $('#userTemplate');
