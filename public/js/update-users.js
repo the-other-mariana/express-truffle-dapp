@@ -10,7 +10,7 @@ $(document).ready(function() {
         console.log(data);
         $('#usersRow').empty();
         var usersRow = $('#usersRow');
-
+        // maaaster
         //$('#usersRow').html(data[0].username + ": " + data[0].password + " " + data[1].username + ": " + data[1].password);
         for(var i = 0; i < data.length; i++){
           var userTemplate = $('#userTemplate');
