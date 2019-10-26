@@ -32,8 +32,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Blockchain Dapp', success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
 
+  /*
   var authInstance;
-// get users from contract
+  // get users from contract
   App.contracts.Auth.deployed().then(function(instance){
     //return instance.getNumberOfUsers();
     authInstance = instance;
@@ -54,7 +55,21 @@ router.get('/', function(req, res, next) {
     console.log("failed contract call");
     console.log(err);
   });
+  */
 
+  // get users from db
+  mongo.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('user-data').find();
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      console.log(doc);
+    }, function(){
+      db.close();
+    });
+  });
 
 });
 
@@ -77,6 +92,7 @@ router.post('/restart-db', function(req, res, next){
 
 // for AJAX resource
 router.get('/users', function(req, res, next) {
+  /*
   var authInstance;
   App.contracts.Auth.deployed().then(function(instance){
     authInstance = instance;
@@ -110,16 +126,33 @@ router.get('/users', function(req, res, next) {
     if(err != null){
       console.log("error at db connect");
     }
-
     var cursor = db.collection('user-data').find();
-    console.log(cursor[0]);
     cursor.forEach(function(doc, err){
       assert.equal(null, err);
-      resultArray.push(doc)
-      console.log( (doc._id.toString()) );
+      resultArray.push(doc);
     }, function(){
       db.close();
       console.log(resultArray);
+    });
+  });
+
+  */
+
+  // mongo db get data
+  App.userslist = [];
+  mongo.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('user-data').find();
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      //console.log("(p) User " + doc._id.toString() + ": " + doc.username + " password: " + doc.password);
+      App.userslist.push({id: doc._id.toString(), username: doc.username, password: doc.password});
+    }, function(){
+      db.close();
+      res.send(App.userslist);
+      console.log(App.userslist);
     });
   });
 });
@@ -131,6 +164,7 @@ router.get('/users/detail', function(req, res, next) {
 
 router.post('/login', function(req, res, next){
 
+  /*
   var loginusername = req.body.loginusername;
   var loginpassword = req.body.loginpassword;
 
@@ -154,11 +188,42 @@ router.post('/login', function(req, res, next){
     console.log(err);
     res.redirect('/');
   });
+  */
 
+  var loginusername = req.body.loginusername;
+  var loginpassword = req.body.loginpassword;
+  var exists = false;
+
+  mongo.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('user-data').find();
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      if (doc.username == loginusername && doc.password == loginpassword){
+        exists = true;
+      }
+    }, function(){
+      db.close();
+      if(exists == true){
+        req.session.success = true;
+        req.session.user = loginusername;
+        console.log("successfull validation");
+        res.redirect('/');
+      }else{
+        req.session.success = false;
+        req.session.user = "";
+        res.redirect('/');
+        console.log("unsuccessfull validation");
+      }
+    });
+  });
 
 });
 
 router.post('/register', function(req, res, next){
+  /*
   App.contracts.Auth.deployed().then(function(instance){
     return instance.getNumberOfUsers();
   }).then(function(number){
@@ -176,7 +241,22 @@ router.post('/register', function(req, res, next){
     console.log(err);
   });
 
-  //res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup});
+  req.session.errors = null;
+  */
+
+  mongo.connect(url, function(err, db){
+    db.collection('user-data').count().then(function(count){
+      if(count == 0){
+        console.log("not set up");
+        settingup = true;
+        res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup });
+      }else{
+        console.log("already set up");
+        settingup = false;
+        res.render('register', { title: 'Register Account', errors: req.session.errors, settingup: settingup });
+      }
+    });
+  });
   req.session.errors = null;
 });
 
@@ -192,6 +272,7 @@ router.get('/market', function(req, res, next){
 });
 
 router.post('/register/submit-account', function(req, res, next){
+  /*
   var inputUsername = req.body.username;
   var inputPassword = req.body.password;
   var loggedUser = req.session.user;
@@ -221,6 +302,15 @@ router.post('/register/submit-account', function(req, res, next){
       console.error(err.message);
     });
   });
+  */
+  var inputUsername = req.body.username;
+  var inputPassword = req.body.password;
+  var loggedUser = req.session.user;
+  var coinbase;
+
+  if(typeof loggedUser === 'undefined'){
+    loggedUser = "none";
+  }
 
   // mongodb user insertion
   var item = {
@@ -243,6 +333,7 @@ router.post('/register/submit-account', function(req, res, next){
           assert.equal(null, err);
           console.log('Item inserted');
           db.close();
+          res.redirect("/");
         });
       }
       // if super user already set up
@@ -259,10 +350,12 @@ router.post('/register/submit-account', function(req, res, next){
               assert.equal(null, err);
               console.log('Item inserted from super user');
               db.close();
+              res.redirect("/");
             });
           }else{
             console.log("User not allowed to insert item");
             db.close();
+            res.redirect("/");
           }
         });
       }
