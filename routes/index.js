@@ -62,9 +62,11 @@ router.post('/restart-db', function(req, res, next){
 
   mongo.connect(url, function(err, db){
     assert.equal(null, err);
-    db.collection('user-data').drop(function(err, res){
-      assert.equal(null, err);
-      if (res){
+    db.collection('user-data').drop(function(err, result){
+      if(err != null){
+        console.log("error dropping");
+      }
+      if (result){
         console.log("user-data collection dropped");
         res.redirect('/');
       }
@@ -108,10 +110,13 @@ router.get('/users', function(req, res, next) {
     if(err != null){
       console.log("error at db connect");
     }
+
     var cursor = db.collection('user-data').find();
+    console.log(cursor[0]);
     cursor.forEach(function(doc, err){
       assert.equal(null, err);
       resultArray.push(doc)
+      console.log( (doc._id.toString()) );
     }, function(){
       db.close();
       console.log(resultArray);
@@ -220,15 +225,50 @@ router.post('/register/submit-account', function(req, res, next){
   // mongodb user insertion
   var item = {
     username: inputUsername,
-    password: inputPassword
+    password: inputPassword,
+    isSuperUser: false
   };
   mongo.connect(url, function(err, db){
+    var superuser = null;
+
+
     assert.equal(null, err);
-    db.collection('user-data').insertOne(item, function(err, result){
-      assert.equal(null, err);
-      console.log('Item inserted');
-      db.close();
+    db.collection('user-data').count().then((count) => {
+      console.log("number of users from db: " + count);
+
+      // if creating super user
+      if(count == 0){
+        item.isSuperUser = true;
+        db.collection('user-data').insertOne(item, function(err, result){
+          assert.equal(null, err);
+          console.log('Item inserted');
+          db.close();
+        });
+      }
+      // if super user already set up
+      else{
+        var cursor = db.collection('user-data').find();
+        cursor.forEach(function(doc, err){
+          assert.equal(null, err);
+          if (doc.isSuperUser == true){
+            superuser = doc.username;
+          }
+        }, function(){
+          if(loggedUser == superuser){
+            db.collection('user-data').insertOne(item, function(err, result){
+              assert.equal(null, err);
+              console.log('Item inserted from super user');
+              db.close();
+            });
+          }else{
+            console.log("User not allowed to insert item");
+            db.close();
+          }
+        });
+      }
     });
+
+
   });
 });
 
