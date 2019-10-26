@@ -12,6 +12,10 @@ var tools = require("./fs-tools.js");
 var contractAuth;
 var settingup = false;
 
+const mongo = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/test';
+var assert = require('assert');
+
 App = {
   web3Provider: null,
   contracts: {},
@@ -37,23 +41,11 @@ router.get('/', function(req, res, next) {
   }).then(function(userIds){
     console.log("users: ");
     console.log(userIds);
-
-    //$('#usersRow').empty();
-
     for(var i = 0; i < userIds.length; i++){
       var userId = userIds[i];
       console.log(userId);
       authInstance.getuser(userId.toNumber()).then(function(user){
-        //console.log(user);
         console.log("User " + user[0] + " password: " + user[1]);
-        /*
-        var usersRow = $('#usersRow');
-        var articleTemplate = $('$userTemplate');
-        articleTemplate.find('.panel-title').text("User " + user[0]);
-        articleTemplate.find('.user-name').text(user[2]);
-        articleTemplate.find('.user-password').text(user[3]);
-
-        usersRow.append(userTemplate.html());*/
       }).catch(function(err){
         console.log("failed user mapping");
       });
@@ -62,6 +54,7 @@ router.get('/', function(req, res, next) {
     console.log("failed contract call");
     console.log(err);
   });
+
 
 });
 
@@ -92,6 +85,22 @@ router.get('/users', function(req, res, next) {
   }).catch(function(err){
     console.log("failed contract call");
     console.log(err);
+  });
+
+  // mongo db get data
+  var resultArray = [];
+  mongo.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('user-data').find();
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      resultArray.push(doc)
+    }, function(){
+      db.close();
+      console.log(resultArray);
+    });
   });
 });
 
@@ -178,9 +187,7 @@ router.post('/register/submit-account', function(req, res, next){
     }
   }).then(function(account){
     coinbase = account;
-
     console.log(json);
-
     App.contracts.Auth.deployed().then(function(instance) {
       return instance.createUser(inputUsername, inputPassword, loggedUser, {from: coinbase});
     }).then(function(user){
@@ -193,9 +200,21 @@ router.post('/register/submit-account', function(req, res, next){
     }).catch(function(err) {
       console.error(err.message);
     });
-
   });
 
+  // mongodb user insertion
+  var item = {
+    username: inputUsername,
+    password: inputPassword
+  };
+  mongo.connect(url, function(err, db){
+    assert.equal(null, err);
+    db.collection('user-data').insertOne(item, function(err, result){
+      assert.equal(null, err);
+      console.log('Item inserted');
+      db.close();
+    });
+  });
 });
 
 module.exports = router;
