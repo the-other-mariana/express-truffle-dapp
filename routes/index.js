@@ -58,6 +58,21 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.post('/restart-db', function(req, res, next){
+
+  mongo.connect(url, function(err, db){
+    assert.equal(null, err);
+    db.collection('user-data').drop(function(err, res){
+      assert.equal(null, err);
+      if (res){
+        console.log("user-data collection dropped");
+        res.redirect('/');
+      }
+    });
+  });
+
+});
+
 // for AJAX resource
 router.get('/users', function(req, res, next) {
   var authInstance;
