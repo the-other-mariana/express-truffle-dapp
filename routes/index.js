@@ -3,6 +3,7 @@ var router = express.Router();
 
 var getJSON = require('get-json');
 var json = require("../build/contracts/Auth.json");
+var jsonAuthHash = require("../build/contracts/AuthHash.json");
 var contract = require("truffle-contract");
 const fetch = require("node-fetch");
 const ganache = require("ganache-cli");
@@ -24,8 +25,12 @@ App = {
 };
 
 App.contracts.Auth = contract(json);
+App.contracts.AuthHash = contract(jsonAuthHash);
+
 App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+
 App.contracts.Auth.setProvider(App.web3Provider);
+App.contracts.AuthHash.setProvider(App.web3Provider);
 
 /* 1. GET home page. */
 router.get('/', function(req, res, next) {
@@ -69,6 +74,14 @@ router.get('/', function(req, res, next) {
     }, function(){
       db.close();
     });
+  });
+
+  var authHashInstance;
+  App.contracts.AuthHash.deployed().then(function(instance){
+    authHashInstance = instance;
+    return instance.getNumberOfUsers();
+  }).then(function(number){
+    console.log("contract hashes: " + number);
   });
 
 });
@@ -193,30 +206,42 @@ router.post('/login', function(req, res, next){
   var loginusername = req.body.loginusername;
   var loginpassword = req.body.loginpassword;
   var exists = false;
+  var userIndex = 0;
 
   mongo.connect(url, function(err, db){
     if(err != null){
       console.log("error at db connect");
     }
     var cursor = db.collection('user-data').find();
+    var counter = 0;
     cursor.forEach(function(doc, err){
       assert.equal(null, err);
       if (doc.username == loginusername && doc.password == loginpassword){
         exists = true;
+        userIndex = counter;
       }
+      counter += 1;
     }, function(){
       db.close();
-      if(exists == true){
-        req.session.success = true;
-        req.session.user = loginusername;
-        console.log("successfull validation");
-        res.redirect('/');
-      }else{
-        req.session.success = false;
-        req.session.user = "";
-        res.redirect('/');
-        console.log("unsuccessfull validation");
-      }
+
+      // hash of input username and password occurs here
+      var hashInfo = loginpassword;
+      App.contracts.AuthHash.deployed().then(function(instance){
+        return instance.getUserHash(userIndex);
+      }).then(function(userHash){
+        if(exists == true && userHash == hashInfo){
+          req.session.success = true;
+          req.session.user = loginusername;
+          console.log("successfull validation");
+          res.redirect('/');
+        }else{
+          req.session.success = false;
+          req.session.user = "";
+          res.redirect('/');
+          console.log("unsuccessfull validation");
+        }
+      });
+
     });
   });
 
@@ -329,11 +354,29 @@ router.post('/register/submit-account', function(req, res, next){
       // if creating super user
       if(count == 0){
         item.isSuperUser = true;
+        // add it to db
         db.collection('user-data').insertOne(item, function(err, result){
           assert.equal(null, err);
           console.log('Item inserted');
           db.close();
-          res.redirect("/");
+        });
+
+        // add it to bc
+        web3.eth.getCoinbase(function(err, account){
+          if (err != null){
+            console.log(err);
+          }
+        }).then(function(account){
+          coinbase = account;
+          App.contracts.AuthHash.deployed().then(function(instance) {
+            return instance.createUserHash(inputUsername, inputPassword, {from: coinbase});
+          }).then(function(user){
+            console.log("user: ");
+            console.log(user);
+            res.redirect("/");
+          }).catch(function(err) {
+            console.error(err.message);
+          });
         });
       }
       // if super user already set up
@@ -346,11 +389,27 @@ router.post('/register/submit-account', function(req, res, next){
           }
         }, function(){
           if(loggedUser == superuser){
+            // add it to db
             db.collection('user-data').insertOne(item, function(err, result){
               assert.equal(null, err);
               console.log('Item inserted from super user');
               db.close();
-              res.redirect("/");
+            });
+
+            // add it to bc
+            web3.eth.getCoinbase(function(err, account){
+              if (err != null) console.log(err);
+            }).then(function(account){
+              coinbase = account;
+              App.contracts.AuthHash.deployed().then(function(instance) {
+                return instance.createUserHash(inputUsername, inputPassword, {from: coinbase});
+              }).then(function(user){
+                console.log("user: ");
+                console.log(user);
+                res.redirect("/");
+              }).catch(function(err) {
+                console.error(err.message);
+              });
             });
           }else{
             console.log("User not allowed to insert item");
