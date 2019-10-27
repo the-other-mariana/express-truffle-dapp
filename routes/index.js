@@ -225,11 +225,11 @@ router.post('/login', function(req, res, next){
       db.close();
 
       // hash of input username and password occurs here
-      var hashInfo = loginpassword;
+      var hashInfo = loginusername + loginpassword;
       App.contracts.AuthHash.deployed().then(function(instance){
-        return instance.getUserHash(userIndex);
-      }).then(function(userHash){
-        if(exists == true && userHash == hashInfo){
+        return instance.compareHash(hashInfo, userIndex);
+      }).then(function(same){
+        if(exists == true && same == true){
           req.session.success = true;
           req.session.user = loginusername;
           console.log("successfull validation");
@@ -369,7 +369,8 @@ router.post('/register/submit-account', function(req, res, next){
         }).then(function(account){
           coinbase = account;
           App.contracts.AuthHash.deployed().then(function(instance) {
-            return instance.createUserHash(inputUsername, inputPassword, {from: coinbase});
+            var hashSubject = inputUsername + inputPassword;
+            return instance.createUserHash(hashSubject, {from: coinbase});
           }).then(function(user){
             console.log("user: ");
             console.log(user);
@@ -402,7 +403,8 @@ router.post('/register/submit-account', function(req, res, next){
             }).then(function(account){
               coinbase = account;
               App.contracts.AuthHash.deployed().then(function(instance) {
-                return instance.createUserHash(inputUsername, inputPassword, {from: coinbase});
+                var hashSubject = inputUsername + inputPassword;
+                return instance.createUserHash(hashSubject, {from: coinbase});
               }).then(function(user){
                 console.log("user: ");
                 console.log(user);
