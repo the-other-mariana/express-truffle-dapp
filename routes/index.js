@@ -306,8 +306,11 @@ router.post('/register/submit-account', function(req, res, next){
                   var auditInfo = {
                     transactionHash: user.receipt.transactionHash,
                     blockHash: user.receipt.blockHash,
-                    blockNumber: user.receipt.blockNumber
-                  }
+                    blockNumber: user.receipt.blockNumber,
+                    from: user.receipt.from,
+                    to: user.receipt.to,
+                    gasUsed: user.receipt.gasUsed
+                  };
                   db.collection('user-data').update({ _id: objectID }, { $set: { 'auditInfo' : auditInfo } }, function (e){
                     if(e) console.log(e);
                     res.redirect("/");
