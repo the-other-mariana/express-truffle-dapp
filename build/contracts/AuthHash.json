@@ -2,31 +2,12 @@
   "contractName": "AuthHash",
   "abi": [
     {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "userHashes",
-      "outputs": [
-        {
-          "name": "id",
-          "type": "uint256"
-        },
-        {
-          "name": "hashInfo",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "constant": false,
       "inputs": [
+        {
+          "name": "_dbID",
+          "type": "string"
+        },
         {
           "name": "_hashSubject",
           "type": "string"
@@ -47,12 +28,12 @@
       "constant": true,
       "inputs": [
         {
-          "name": "test",
+          "name": "_dbID",
           "type": "string"
         },
         {
-          "name": "index",
-          "type": "uint256"
+          "name": "_test",
+          "type": "string"
         }
       ],
       "name": "compareHash",
@@ -84,8 +65,8 @@
       "constant": true,
       "inputs": [
         {
-          "name": "index",
-          "type": "uint256"
+          "name": "_dbID",
+          "type": "string"
         }
       ],
       "name": "getUserHash",
@@ -100,20 +81,20 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6103f48061001e6000396000f30060606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634d009288146100725780634e838e6a1461009b57806377c15a8f146100da578063876318c91461014f57806394e15a6b14610195575b600080fd5b341561007d57600080fd5b610085610213565b6040518082815260200191505060405180910390f35b34156100a657600080fd5b6100bc600480803590602001909190505061021d565b60405180826000191660001916815260200191505060405180910390f35b34156100e557600080fd5b610135600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061023c565b604051808215151515815260200191505060405180910390f35b341561015a57600080fd5b6101706004808035906020019091905050610307565b6040518083815260200182600019166000191681526020019250505060405180910390f35b34156101a057600080fd5b6101f9600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190505061032b565b604051808215151515815260200191505060405180910390f35b6000600154905090565b6000806000838152602001908152602001600020600101549050919050565b600060408051908101604052806001548152602001836040518082805190602001908083835b6020831015156102875780518252602082019150602081019050602083039250610262565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019168152506000806001548152602001908152602001600020600082015181600001556020820151816001019060001916905590505060016000815480929190600101919050555060019050919050565b60006020528060005260406000206000915090508060000154908060010154905082565b60008060008381526020019081526020016000206001015460001916836040518082805190602001908083835b60208310151561037d5780518252602082019150602081019050602083039250610358565b6001836020036101000a03801982511681845116808217855250505050505090500191505060405180910390206000191614156103bd57600190506103c2565b600090505b929150505600a165627a7a72305820825bb721026acc69cd2b7b413701c7d0bced793e412e8d227d50525e1cb821180029",
-  "deployedBytecode": "0x60606040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634d009288146100725780634e838e6a1461009b57806377c15a8f146100da578063876318c91461014f57806394e15a6b14610195575b600080fd5b341561007d57600080fd5b610085610213565b6040518082815260200191505060405180910390f35b34156100a657600080fd5b6100bc600480803590602001909190505061021d565b60405180826000191660001916815260200191505060405180910390f35b34156100e557600080fd5b610135600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061023c565b604051808215151515815260200191505060405180910390f35b341561015a57600080fd5b6101706004808035906020019091905050610307565b6040518083815260200182600019166000191681526020019250505060405180910390f35b34156101a057600080fd5b6101f9600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190505061032b565b604051808215151515815260200191505060405180910390f35b6000600154905090565b6000806000838152602001908152602001600020600101549050919050565b600060408051908101604052806001548152602001836040518082805190602001908083835b6020831015156102875780518252602082019150602081019050602083039250610262565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019168152506000806001548152602001908152602001600020600082015181600001556020820151816001019060001916905590505060016000815480929190600101919050555060019050919050565b60006020528060005260406000206000915090508060000154908060010154905082565b60008060008381526020019081526020016000206001015460001916836040518082805190602001908083835b60208310151561037d5780518252602082019150602081019050602083039250610358565b6001836020036101000a03801982511681845116808217855250505050505090500191505060405180910390206000191614156103bd57600190506103c2565b600090505b929150505600a165627a7a72305820825bb721026acc69cd2b7b413701c7d0bced793e412e8d227d50525e1cb821180029",
-  "sourceMap": "28:802:1:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "28:802:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;601:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;698:129;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;185:219;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;114:43;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;408:187;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;601:91;649:11;675;;668:18;;601:91;:::o;698:129::-;758:17;794:10;:17;805:5;794:17;;;;;;;;;;;:26;;;786:35;;698:129;;;:::o;185:219::-;246:11;314:46;;;;;;;;;323:11;;314:46;;;;346:12;336:23;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;314:46:1;;;;;;288:10;:23;299:11;;288:23;;;;;;;;;;;:72;;;;;;;;;;;;;;;;;;;;;;;;367:11;;:13;;;;;;;;;;;;;394:4;387:11;;185:219;;;:::o;114:43::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;408:187::-;475:11;516:10;:17;527:5;516:17;;;;;;;;;;;:26;;;497:45;;;507:4;497:15;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;497:45:1;;;;494:77;;;559:4;552:11;;;;494:77;584:5;577:12;;408:187;;;;;:::o",
-  "source": "pragma solidity ^0.4.18;\r\n\r\ncontract AuthHash{\r\n  struct UserHash{\r\n    uint id;\r\n    bytes32 hashInfo;\r\n  }\r\n\r\n  mapping(uint => UserHash) public userHashes;\r\n  uint userCounter;\r\n\r\n  function createUserHash(string _hashSubject) public returns (bool result){\r\n    // hashing occurs\r\n    userHashes[userCounter] = UserHash(userCounter, keccak256(_hashSubject));\r\n    userCounter++;\r\n    return true;\r\n  }\r\n  function compareHash(string test, uint index) public view returns (bool result){\r\n    if(keccak256(test) == userHashes[index].hashInfo){\r\n      return true;\r\n    }\r\n    return false;\r\n  }\r\n\r\n  function getNumberOfUsers() public view returns(uint number){\r\n    return userCounter;\r\n  }\r\n\r\n  function getUserHash(uint index)  public  constant  returns(bytes32 _userHash) {\r\n      return (userHashes[index].hashInfo);\r\n  }\r\n}\r\n",
+  "bytecode": "0x6060604052341561000f57600080fd5b6105f48061001e6000396000f300606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634d00928814610067578063a64b38a214610090578063c0a2c03c14610148578063f5498bb9146101c1575b600080fd5b341561007257600080fd5b61007a610279565b6040518082815260200191505060405180910390f35b341561009b57600080fd5b61012e600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610283565b604051808215151515815260200191505060405180910390f35b341561015357600080fd5b6101a3600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506103b7565b60405180826000191660001916815260200191505060405180910390f35b34156101cc57600080fd5b61025f600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061042e565b604051808215151515815260200191505060405180910390f35b6000600154905090565b60006040805190810160405280848152602001836040518082805190602001908083835b6020831015156102cc57805182526020820191506020810190506020830392506102a7565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019168152506000846040518082805190602001908083835b6020831015156103385780518252602082019150602081019050602083039250610313565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390206000820151816000019080519060200190610387929190610523565b50602082015181600101906000191690559050506001600081548092919060010191905055506001905092915050565b600080826040518082805190602001908083835b6020831015156103f057805182526020820191506020810190506020830392506103cb565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020600101549050919050565b600080836040518082805190602001908083835b6020831015156104675780518252602082019150602081019050602083039250610442565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390206001015460001916826040518082805190602001908083835b6020831015156104d857805182526020820191506020810190506020830392506104b3565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019161415610518576001905061051d565b600090505b92915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061056457805160ff1916838001178555610592565b82800160010185558215610592579182015b82811115610591578251825591602001919060010190610576565b5b50905061059f91906105a3565b5090565b6105c591905b808211156105c15760008160009055506001016105a9565b5090565b905600a165627a7a723058202286bbc059bc0c61efa3e6712e7af417a05aba4537214e9631eed54924280f6d0029",
+  "deployedBytecode": "0x606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634d00928814610067578063a64b38a214610090578063c0a2c03c14610148578063f5498bb9146101c1575b600080fd5b341561007257600080fd5b61007a610279565b6040518082815260200191505060405180910390f35b341561009b57600080fd5b61012e600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610283565b604051808215151515815260200191505060405180910390f35b341561015357600080fd5b6101a3600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919050506103b7565b60405180826000191660001916815260200191505060405180910390f35b34156101cc57600080fd5b61025f600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190505061042e565b604051808215151515815260200191505060405180910390f35b6000600154905090565b60006040805190810160405280848152602001836040518082805190602001908083835b6020831015156102cc57805182526020820191506020810190506020830392506102a7565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019168152506000846040518082805190602001908083835b6020831015156103385780518252602082019150602081019050602083039250610313565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390206000820151816000019080519060200190610387929190610523565b50602082015181600101906000191690559050506001600081548092919060010191905055506001905092915050565b600080826040518082805190602001908083835b6020831015156103f057805182526020820191506020810190506020830392506103cb565b6001836020036101000a0380198251168184511680821785525050505050509050019150509081526020016040518091039020600101549050919050565b600080836040518082805190602001908083835b6020831015156104675780518252602082019150602081019050602083039250610442565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390206001015460001916826040518082805190602001908083835b6020831015156104d857805182526020820191506020810190506020830392506104b3565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040518091039020600019161415610518576001905061051d565b600090505b92915050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061056457805160ff1916838001178555610592565b82800160010185558215610592579182015b82811115610591578251825591602001919060010190610576565b5b50905061059f91906105a3565b5090565b6105c591905b808211156105c15760008160009055506001016105a9565b5090565b905600a165627a7a723058202286bbc059bc0c61efa3e6712e7af417a05aba4537214e9631eed54924280f6d0029",
+  "sourceMap": "28:868:1:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "28:868:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;666:91;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;244:221;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;763:130;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;469:191;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;666:91;714:11;740;;733:18;;666:91;:::o;244:221::-;319:11;381:40;;;;;;;;;390:5;381:40;;;;407:12;397:23;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;381:40:1;;;;;;361:10;372:5;361:17;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;;;;;;361:60:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;428:11;;:13;;;;;;;;;;;;;455:4;448:11;;244:221;;;;:::o;763:130::-;824:17;860:10;871:5;860:17;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;;;;;;860:26:1;;;852:35;;763:130;;;:::o;469:191::-;539:11;581:10;592:5;581:17;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;;;;;;581:26:1;;;561:46;;;571:5;561:16;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:2;51:6;36:153;;;182:3;176:5;171:3;164:6;98:2;93:3;89;82:19;;123:2;118:3;114;107:19;;148:2;143:3;139;132:19;;36:153;;;274:1;267:3;263:2;259:3;254;250;246;315:4;311:3;305;299:5;295:3;356:4;350:3;344:5;340:3;389:7;380;377:2;372:3;365:6;3:399;;;;;;;;;;;;;;;;;;;561:46:1;;;;558:78;;;624:4;617:11;;;;558:78;649:5;642:12;;469:191;;;;;:::o;28:868::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.18;\r\n\r\ncontract AuthHash{\r\n  struct UserHash{\r\n    string id;\r\n    bytes32 hashInfo;\r\n  }\r\n\r\n// a string can be a map key, but the map must not be public\r\n  mapping(string => UserHash) userHashes;\r\n  uint userCounter;\r\n\r\n  function createUserHash(string _dbID, string _hashSubject) public returns (bool result){\r\n    // hashing occurs\r\n    userHashes[_dbID] = UserHash(_dbID, keccak256(_hashSubject));\r\n    userCounter++;\r\n    return true;\r\n  }\r\n  function compareHash(string _dbID, string _test) public view returns (bool result){\r\n    if(keccak256(_test) == userHashes[_dbID].hashInfo){\r\n      return true;\r\n    }\r\n    return false;\r\n  }\r\n\r\n  function getNumberOfUsers() public view returns(uint number){\r\n    return userCounter;\r\n  }\r\n\r\n  function getUserHash(string _dbID) public  constant  returns(bytes32 _userHash) {\r\n      return (userHashes[_dbID].hashInfo);\r\n  }\r\n}\r\n",
   "sourcePath": "C:\\Users\\Mariana\\Desktop\\nodejs\\express-truffle-dapp\\contracts\\AuthHash.sol",
   "ast": {
     "absolutePath": "/C/Users/Mariana/Desktop/nodejs/express-truffle-dapp/contracts/AuthHash.sol",
     "exportedSymbols": {
       "AuthHash": [
-        297
+        299
       ]
     },
-    "id": 298,
+    "id": 300,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -133,9 +114,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 297,
+        "id": 299,
         "linearizedBaseContracts": [
-          297
+          299
         ],
         "name": "AuthHash",
         "nodeType": "ContractDefinition",
@@ -150,21 +131,21 @@
                 "name": "id",
                 "nodeType": "VariableDeclaration",
                 "scope": 220,
-                "src": "72:7:1",
+                "src": "72:9:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
                 },
                 "typeName": {
                   "id": 216,
-                  "name": "uint",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "72:4:1",
+                  "src": "72:6:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
                   }
                 },
                 "value": null,
@@ -176,7 +157,7 @@
                 "name": "hashInfo",
                 "nodeType": "VariableDeclaration",
                 "scope": 220,
-                "src": "86:16:1",
+                "src": "88:16:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -187,7 +168,7 @@
                   "id": 218,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "86:7:1",
+                  "src": "88:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -199,8 +180,8 @@
             ],
             "name": "UserHash",
             "nodeType": "StructDefinition",
-            "scope": 297,
-            "src": "50:58:1",
+            "scope": 299,
+            "src": "50:60:1",
             "visibility": "public"
           },
           {
@@ -208,31 +189,31 @@
             "id": 224,
             "name": "userHashes",
             "nodeType": "VariableDeclaration",
-            "scope": 297,
-            "src": "114:43:1",
+            "scope": 299,
+            "src": "178:38:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-              "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+              "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
             },
             "typeName": {
               "id": 223,
               "keyType": {
                 "id": 221,
-                "name": "uint",
+                "name": "string",
                 "nodeType": "ElementaryTypeName",
-                "src": "122:4:1",
+                "src": "186:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
                 }
               },
               "nodeType": "Mapping",
-              "src": "114:25:1",
+              "src": "178:27:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
               },
               "valueType": {
                 "contractScope": null,
@@ -240,7 +221,7 @@
                 "name": "UserHash",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 220,
-                "src": "130:8:1",
+                "src": "196:8:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_UserHash_$220_storage_ptr",
                   "typeString": "struct AuthHash.UserHash storage pointer"
@@ -248,15 +229,15 @@
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "constant": false,
             "id": 226,
             "name": "userCounter",
             "nodeType": "VariableDeclaration",
-            "scope": 297,
-            "src": "162:16:1",
+            "scope": 299,
+            "src": "221:16:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -267,7 +248,7 @@
               "id": 225,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "162:4:1",
+              "src": "221:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -278,14 +259,14 @@
           },
           {
             "body": {
-              "id": 249,
+              "id": 251,
               "nodeType": "Block",
-              "src": "258:146:1",
+              "src": "331:134:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 242,
+                    "id": 244,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -294,29 +275,29 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 233,
+                        "id": 235,
                         "name": "userHashes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 224,
-                        "src": "288:10:1",
+                        "src": "361:10:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                          "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                          "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                         }
                       },
-                      "id": 235,
+                      "id": 237,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 234,
-                        "name": "userCounter",
+                        "id": 236,
+                        "name": "_dbID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 226,
-                        "src": "299:11:1",
+                        "referencedDeclaration": 228,
+                        "src": "372:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
                         }
                       },
                       "isConstant": false,
@@ -324,7 +305,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "288:23:1",
+                      "src": "361:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_UserHash_$220_storage",
                         "typeString": "struct AuthHash.UserHash storage ref"
@@ -337,15 +318,15 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 237,
-                          "name": "userCounter",
+                          "id": 239,
+                          "name": "_dbID",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 226,
-                          "src": "323:11:1",
+                          "referencedDeclaration": 228,
+                          "src": "390:5:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           }
                         },
                         {
@@ -353,12 +334,12 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 239,
+                              "id": 241,
                               "name": "_hashSubject",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 228,
-                              "src": "346:12:1",
+                              "referencedDeclaration": 230,
+                              "src": "407:12:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_string_memory_ptr",
                                 "typeString": "string memory"
@@ -372,18 +353,18 @@
                                 "typeString": "string memory"
                               }
                             ],
-                            "id": 238,
+                            "id": 240,
                             "name": "keccak256",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 611,
-                            "src": "336:9:1",
+                            "referencedDeclaration": 613,
+                            "src": "397:9:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                               "typeString": "function () pure returns (bytes32)"
                             }
                           },
-                          "id": 240,
+                          "id": 242,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -391,7 +372,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "336:23:1",
+                          "src": "397:23:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
@@ -401,26 +382,26 @@
                       "expression": {
                         "argumentTypes": [
                           {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           },
                           {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
                           }
                         ],
-                        "id": 236,
+                        "id": 238,
                         "name": "UserHash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 220,
-                        "src": "314:8:1",
+                        "src": "381:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_UserHash_$220_storage_ptr_$",
                           "typeString": "type(struct AuthHash.UserHash storage pointer)"
                         }
                       },
-                      "id": 241,
+                      "id": 243,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -428,26 +409,26 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "314:46:1",
+                      "src": "381:40:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_UserHash_$220_memory",
                         "typeString": "struct AuthHash.UserHash memory"
                       }
                     },
-                    "src": "288:72:1",
+                    "src": "361:60:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_UserHash_$220_storage",
                       "typeString": "struct AuthHash.UserHash storage ref"
                     }
                   },
-                  "id": 243,
+                  "id": 245,
                   "nodeType": "ExpressionStatement",
-                  "src": "288:72:1"
+                  "src": "361:60:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 245,
+                    "id": 247,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -455,15 +436,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "367:13:1",
+                    "src": "428:13:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 244,
+                      "id": 246,
                       "name": "userCounter",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 226,
-                      "src": "367:11:1",
+                      "src": "428:11:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -474,22 +455,22 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 246,
+                  "id": 248,
                   "nodeType": "ExpressionStatement",
-                  "src": "367:13:1"
+                  "src": "428:13:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 247,
+                    "id": 249,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "394:4:1",
+                    "src": "455:4:1",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -497,14 +478,14 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 232,
-                  "id": 248,
+                  "functionReturnParameters": 234,
+                  "id": 250,
                   "nodeType": "Return",
-                  "src": "387:11:1"
+                  "src": "448:11:1"
                 }
               ]
             },
-            "id": 250,
+            "id": 252,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -512,16 +493,16 @@
             "name": "createUserHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 229,
+              "id": 231,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 228,
-                  "name": "_hashSubject",
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 250,
-                  "src": "209:19:1",
+                  "scope": 252,
+                  "src": "268:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -532,7 +513,33 @@
                     "id": 227,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "209:6:1",
+                    "src": "268:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 230,
+                  "name": "_hashSubject",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 252,
+                  "src": "282:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string storage pointer"
@@ -542,20 +549,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "208:21:1"
+              "src": "267:35:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 232,
+              "id": 234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 231,
+                  "id": 233,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 250,
-                  "src": "246:11:1",
+                  "scope": 252,
+                  "src": "319:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -563,10 +570,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 230,
+                    "id": 232,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "246:4:1",
+                    "src": "319:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -576,19 +583,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "245:13:1"
+              "src": "318:13:1"
             },
-            "scope": 297,
-            "src": "185:219:1",
+            "scope": 299,
+            "src": "244:221:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 273,
+              "id": 275,
               "nodeType": "Block",
-              "src": "487:108:1",
+              "src": "551:109:1",
               "statements": [
                 {
                   "condition": {
@@ -597,7 +604,7 @@
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     },
-                    "id": 266,
+                    "id": 268,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -607,12 +614,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 260,
-                          "name": "test",
+                          "id": 262,
+                          "name": "_test",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 252,
-                          "src": "507:4:1",
+                          "referencedDeclaration": 256,
+                          "src": "571:5:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -626,18 +633,18 @@
                             "typeString": "string memory"
                           }
                         ],
-                        "id": 259,
+                        "id": 261,
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 611,
-                        "src": "497:9:1",
+                        "referencedDeclaration": 613,
+                        "src": "561:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                           "typeString": "function () pure returns (bytes32)"
                         }
                       },
-                      "id": 261,
+                      "id": 263,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -645,7 +652,7 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "497:15:1",
+                      "src": "561:16:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
@@ -659,29 +666,29 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 262,
+                          "id": 264,
                           "name": "userHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 224,
-                          "src": "516:10:1",
+                          "src": "581:10:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                            "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                            "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                           }
                         },
-                        "id": 264,
+                        "id": 266,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 263,
-                          "name": "index",
+                          "id": 265,
+                          "name": "_dbID",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 254,
-                          "src": "527:5:1",
+                          "src": "592:5:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           }
                         },
                         "isConstant": false,
@@ -689,13 +696,13 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "516:17:1",
+                        "src": "581:17:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_struct$_UserHash_$220_storage",
                           "typeString": "struct AuthHash.UserHash storage ref"
                         }
                       },
-                      "id": 265,
+                      "id": 267,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -703,39 +710,39 @@
                       "memberName": "hashInfo",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 219,
-                      "src": "516:26:1",
+                      "src": "581:26:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
                       }
                     },
-                    "src": "497:45:1",
+                    "src": "561:46:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
                   "falseBody": null,
-                  "id": 270,
+                  "id": 272,
                   "nodeType": "IfStatement",
-                  "src": "494:77:1",
+                  "src": "558:78:1",
                   "trueBody": {
-                    "id": 269,
+                    "id": 271,
                     "nodeType": "Block",
-                    "src": "543:28:1",
+                    "src": "608:28:1",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "74727565",
-                          "id": 267,
+                          "id": 269,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "559:4:1",
+                          "src": "624:4:1",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
@@ -743,10 +750,10 @@
                           },
                           "value": "true"
                         },
-                        "functionReturnParameters": 258,
-                        "id": 268,
+                        "functionReturnParameters": 260,
+                        "id": 270,
                         "nodeType": "Return",
-                        "src": "552:11:1"
+                        "src": "617:11:1"
                       }
                     ]
                   }
@@ -755,14 +762,14 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "66616c7365",
-                    "id": 271,
+                    "id": 273,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "584:5:1",
+                    "src": "649:5:1",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -770,14 +777,14 @@
                     },
                     "value": "false"
                   },
-                  "functionReturnParameters": 258,
-                  "id": 272,
+                  "functionReturnParameters": 260,
+                  "id": 274,
                   "nodeType": "Return",
-                  "src": "577:12:1"
+                  "src": "642:12:1"
                 }
               ]
             },
-            "id": 274,
+            "id": 276,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -785,16 +792,16 @@
             "name": "compareHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 255,
+              "id": 257,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 252,
-                  "name": "test",
+                  "id": 254,
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "429:11:1",
+                  "scope": 276,
+                  "src": "490:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -802,10 +809,10 @@
                     "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 251,
+                    "id": 253,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "429:6:1",
+                    "src": "490:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string storage pointer"
@@ -816,45 +823,45 @@
                 },
                 {
                   "constant": false,
-                  "id": 254,
-                  "name": "index",
+                  "id": 256,
+                  "name": "_test",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "442:10:1",
+                  "scope": 276,
+                  "src": "504:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 253,
-                    "name": "uint",
+                    "id": 255,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "442:4:1",
+                    "src": "504:6:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "428:25:1"
+              "src": "489:28:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 258,
+              "id": 260,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 257,
+                  "id": 259,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "475:11:1",
+                  "scope": 276,
+                  "src": "539:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -862,10 +869,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 256,
+                    "id": 258,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "475:4:1",
+                    "src": "539:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -875,42 +882,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "474:13:1"
+              "src": "538:13:1"
             },
-            "scope": 297,
-            "src": "408:187:1",
+            "scope": 299,
+            "src": "469:191:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 281,
+              "id": 283,
               "nodeType": "Block",
-              "src": "661:31:1",
+              "src": "726:31:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 279,
+                    "id": 281,
                     "name": "userCounter",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 226,
-                    "src": "675:11:1",
+                    "src": "740:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 278,
-                  "id": 280,
+                  "functionReturnParameters": 280,
+                  "id": 282,
                   "nodeType": "Return",
-                  "src": "668:18:1"
+                  "src": "733:18:1"
                 }
               ]
             },
-            "id": 282,
+            "id": 284,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -918,23 +925,23 @@
             "name": "getNumberOfUsers",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 275,
+              "id": 277,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "626:2:1"
+              "src": "691:2:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 278,
+              "id": 280,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 277,
+                  "id": 279,
                   "name": "number",
                   "nodeType": "VariableDeclaration",
-                  "scope": 282,
-                  "src": "649:11:1",
+                  "scope": 284,
+                  "src": "714:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -942,10 +949,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 276,
+                    "id": 278,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "649:4:1",
+                    "src": "714:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -955,19 +962,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "648:13:1"
+              "src": "713:13:1"
             },
-            "scope": 297,
-            "src": "601:91:1",
+            "scope": 299,
+            "src": "666:91:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 295,
+              "id": 297,
               "nodeType": "Block",
-              "src": "777:50:1",
+              "src": "843:50:1",
               "statements": [
                 {
                   "expression": {
@@ -979,29 +986,29 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 289,
+                            "id": 291,
                             "name": "userHashes",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 224,
-                            "src": "794:10:1",
+                            "src": "860:10:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                              "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                              "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                             }
                           },
-                          "id": 291,
+                          "id": 293,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 290,
-                            "name": "index",
+                            "id": 292,
+                            "name": "_dbID",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 284,
-                            "src": "805:5:1",
+                            "referencedDeclaration": 286,
+                            "src": "871:5:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
                             }
                           },
                           "isConstant": false,
@@ -1009,13 +1016,13 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "IndexAccess",
-                          "src": "794:17:1",
+                          "src": "860:17:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_struct$_UserHash_$220_storage",
                             "typeString": "struct AuthHash.UserHash storage ref"
                           }
                         },
-                        "id": 292,
+                        "id": 294,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -1023,34 +1030,34 @@
                         "memberName": "hashInfo",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": 219,
-                        "src": "794:26:1",
+                        "src": "860:26:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       }
                     ],
-                    "id": 293,
+                    "id": 295,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "793:28:1",
+                    "src": "859:28:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 288,
-                  "id": 294,
+                  "functionReturnParameters": 290,
+                  "id": 296,
                   "nodeType": "Return",
-                  "src": "786:35:1"
+                  "src": "852:35:1"
                 }
               ]
             },
-            "id": 296,
+            "id": 298,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1058,50 +1065,50 @@
             "name": "getUserHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 285,
+              "id": 287,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 284,
-                  "name": "index",
+                  "id": 286,
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 296,
-                  "src": "719:10:1",
+                  "scope": 298,
+                  "src": "784:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 283,
-                    "name": "uint",
+                    "id": 285,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "719:4:1",
+                    "src": "784:6:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "718:12:1"
+              "src": "783:14:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 288,
+              "id": 290,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 287,
+                  "id": 289,
                   "name": "_userHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 296,
-                  "src": "758:17:1",
+                  "scope": 298,
+                  "src": "824:17:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1109,10 +1116,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 286,
+                    "id": 288,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "758:7:1",
+                    "src": "824:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1122,29 +1129,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "757:19:1"
+              "src": "823:19:1"
             },
-            "scope": 297,
-            "src": "698:129:1",
+            "scope": 299,
+            "src": "763:130:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 298,
-        "src": "28:802:1"
+        "scope": 300,
+        "src": "28:868:1"
       }
     ],
-    "src": "0:832:1"
+    "src": "0:898:1"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/Mariana/Desktop/nodejs/express-truffle-dapp/contracts/AuthHash.sol",
     "exportedSymbols": {
       "AuthHash": [
-        297
+        299
       ]
     },
-    "id": 298,
+    "id": 300,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -1164,9 +1171,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 297,
+        "id": 299,
         "linearizedBaseContracts": [
-          297
+          299
         ],
         "name": "AuthHash",
         "nodeType": "ContractDefinition",
@@ -1181,21 +1188,21 @@
                 "name": "id",
                 "nodeType": "VariableDeclaration",
                 "scope": 220,
-                "src": "72:7:1",
+                "src": "72:9:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
                 },
                 "typeName": {
                   "id": 216,
-                  "name": "uint",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "72:4:1",
+                  "src": "72:6:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string storage pointer"
                   }
                 },
                 "value": null,
@@ -1207,7 +1214,7 @@
                 "name": "hashInfo",
                 "nodeType": "VariableDeclaration",
                 "scope": 220,
-                "src": "86:16:1",
+                "src": "88:16:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1218,7 +1225,7 @@
                   "id": 218,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "86:7:1",
+                  "src": "88:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -1230,8 +1237,8 @@
             ],
             "name": "UserHash",
             "nodeType": "StructDefinition",
-            "scope": 297,
-            "src": "50:58:1",
+            "scope": 299,
+            "src": "50:60:1",
             "visibility": "public"
           },
           {
@@ -1239,31 +1246,31 @@
             "id": 224,
             "name": "userHashes",
             "nodeType": "VariableDeclaration",
-            "scope": 297,
-            "src": "114:43:1",
+            "scope": 299,
+            "src": "178:38:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-              "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+              "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
             },
             "typeName": {
               "id": 223,
               "keyType": {
                 "id": 221,
-                "name": "uint",
+                "name": "string",
                 "nodeType": "ElementaryTypeName",
-                "src": "122:4:1",
+                "src": "186:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string storage pointer"
                 }
               },
               "nodeType": "Mapping",
-              "src": "114:25:1",
+              "src": "178:27:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
               },
               "valueType": {
                 "contractScope": null,
@@ -1271,7 +1278,7 @@
                 "name": "UserHash",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 220,
-                "src": "130:8:1",
+                "src": "196:8:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_UserHash_$220_storage_ptr",
                   "typeString": "struct AuthHash.UserHash storage pointer"
@@ -1279,15 +1286,15 @@
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "constant": false,
             "id": 226,
             "name": "userCounter",
             "nodeType": "VariableDeclaration",
-            "scope": 297,
-            "src": "162:16:1",
+            "scope": 299,
+            "src": "221:16:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1298,7 +1305,7 @@
               "id": 225,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "162:4:1",
+              "src": "221:4:1",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1309,14 +1316,14 @@
           },
           {
             "body": {
-              "id": 249,
+              "id": 251,
               "nodeType": "Block",
-              "src": "258:146:1",
+              "src": "331:134:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 242,
+                    "id": 244,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1325,29 +1332,29 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 233,
+                        "id": 235,
                         "name": "userHashes",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 224,
-                        "src": "288:10:1",
+                        "src": "361:10:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                          "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                          "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                         }
                       },
-                      "id": 235,
+                      "id": 237,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 234,
-                        "name": "userCounter",
+                        "id": 236,
+                        "name": "_dbID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 226,
-                        "src": "299:11:1",
+                        "referencedDeclaration": 228,
+                        "src": "372:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
                         }
                       },
                       "isConstant": false,
@@ -1355,7 +1362,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "288:23:1",
+                      "src": "361:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_UserHash_$220_storage",
                         "typeString": "struct AuthHash.UserHash storage ref"
@@ -1368,15 +1375,15 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 237,
-                          "name": "userCounter",
+                          "id": 239,
+                          "name": "_dbID",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 226,
-                          "src": "323:11:1",
+                          "referencedDeclaration": 228,
+                          "src": "390:5:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           }
                         },
                         {
@@ -1384,12 +1391,12 @@
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 239,
+                              "id": 241,
                               "name": "_hashSubject",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 228,
-                              "src": "346:12:1",
+                              "referencedDeclaration": 230,
+                              "src": "407:12:1",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_string_memory_ptr",
                                 "typeString": "string memory"
@@ -1403,18 +1410,18 @@
                                 "typeString": "string memory"
                               }
                             ],
-                            "id": 238,
+                            "id": 240,
                             "name": "keccak256",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 611,
-                            "src": "336:9:1",
+                            "referencedDeclaration": 613,
+                            "src": "397:9:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                               "typeString": "function () pure returns (bytes32)"
                             }
                           },
-                          "id": 240,
+                          "id": 242,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1422,7 +1429,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "336:23:1",
+                          "src": "397:23:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
@@ -1432,26 +1439,26 @@
                       "expression": {
                         "argumentTypes": [
                           {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           },
                           {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
                           }
                         ],
-                        "id": 236,
+                        "id": 238,
                         "name": "UserHash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 220,
-                        "src": "314:8:1",
+                        "src": "381:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_UserHash_$220_storage_ptr_$",
                           "typeString": "type(struct AuthHash.UserHash storage pointer)"
                         }
                       },
-                      "id": 241,
+                      "id": 243,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1459,26 +1466,26 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "314:46:1",
+                      "src": "381:40:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_UserHash_$220_memory",
                         "typeString": "struct AuthHash.UserHash memory"
                       }
                     },
-                    "src": "288:72:1",
+                    "src": "361:60:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_UserHash_$220_storage",
                       "typeString": "struct AuthHash.UserHash storage ref"
                     }
                   },
-                  "id": 243,
+                  "id": 245,
                   "nodeType": "ExpressionStatement",
-                  "src": "288:72:1"
+                  "src": "361:60:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 245,
+                    "id": 247,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1486,15 +1493,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "367:13:1",
+                    "src": "428:13:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 244,
+                      "id": 246,
                       "name": "userCounter",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 226,
-                      "src": "367:11:1",
+                      "src": "428:11:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1505,22 +1512,22 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 246,
+                  "id": 248,
                   "nodeType": "ExpressionStatement",
-                  "src": "367:13:1"
+                  "src": "428:13:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 247,
+                    "id": 249,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "394:4:1",
+                    "src": "455:4:1",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -1528,14 +1535,14 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 232,
-                  "id": 248,
+                  "functionReturnParameters": 234,
+                  "id": 250,
                   "nodeType": "Return",
-                  "src": "387:11:1"
+                  "src": "448:11:1"
                 }
               ]
             },
-            "id": 250,
+            "id": 252,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1543,16 +1550,16 @@
             "name": "createUserHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 229,
+              "id": 231,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
                   "id": 228,
-                  "name": "_hashSubject",
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 250,
-                  "src": "209:19:1",
+                  "scope": 252,
+                  "src": "268:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1563,7 +1570,33 @@
                     "id": 227,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "209:6:1",
+                    "src": "268:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 230,
+                  "name": "_hashSubject",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 252,
+                  "src": "282:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
+                  },
+                  "typeName": {
+                    "id": 229,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string storage pointer"
@@ -1573,20 +1606,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "208:21:1"
+              "src": "267:35:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 232,
+              "id": 234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 231,
+                  "id": 233,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 250,
-                  "src": "246:11:1",
+                  "scope": 252,
+                  "src": "319:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1594,10 +1627,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 230,
+                    "id": 232,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "246:4:1",
+                    "src": "319:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1607,19 +1640,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "245:13:1"
+              "src": "318:13:1"
             },
-            "scope": 297,
-            "src": "185:219:1",
+            "scope": 299,
+            "src": "244:221:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 273,
+              "id": 275,
               "nodeType": "Block",
-              "src": "487:108:1",
+              "src": "551:109:1",
               "statements": [
                 {
                   "condition": {
@@ -1628,7 +1661,7 @@
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     },
-                    "id": 266,
+                    "id": 268,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1638,12 +1671,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 260,
-                          "name": "test",
+                          "id": 262,
+                          "name": "_test",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 252,
-                          "src": "507:4:1",
+                          "referencedDeclaration": 256,
+                          "src": "571:5:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -1657,18 +1690,18 @@
                             "typeString": "string memory"
                           }
                         ],
-                        "id": 259,
+                        "id": 261,
                         "name": "keccak256",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 611,
-                        "src": "497:9:1",
+                        "referencedDeclaration": 613,
+                        "src": "561:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
                           "typeString": "function () pure returns (bytes32)"
                         }
                       },
-                      "id": 261,
+                      "id": 263,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1676,7 +1709,7 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "497:15:1",
+                      "src": "561:16:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
@@ -1690,29 +1723,29 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 262,
+                          "id": 264,
                           "name": "userHashes",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 224,
-                          "src": "516:10:1",
+                          "src": "581:10:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                            "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                            "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                           }
                         },
-                        "id": 264,
+                        "id": 266,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 263,
-                          "name": "index",
+                          "id": 265,
+                          "name": "_dbID",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 254,
-                          "src": "527:5:1",
+                          "src": "592:5:1",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
                           }
                         },
                         "isConstant": false,
@@ -1720,13 +1753,13 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "516:17:1",
+                        "src": "581:17:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_struct$_UserHash_$220_storage",
                           "typeString": "struct AuthHash.UserHash storage ref"
                         }
                       },
-                      "id": 265,
+                      "id": 267,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -1734,39 +1767,39 @@
                       "memberName": "hashInfo",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 219,
-                      "src": "516:26:1",
+                      "src": "581:26:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
                       }
                     },
-                    "src": "497:45:1",
+                    "src": "561:46:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
                   "falseBody": null,
-                  "id": 270,
+                  "id": 272,
                   "nodeType": "IfStatement",
-                  "src": "494:77:1",
+                  "src": "558:78:1",
                   "trueBody": {
-                    "id": 269,
+                    "id": 271,
                     "nodeType": "Block",
-                    "src": "543:28:1",
+                    "src": "608:28:1",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "74727565",
-                          "id": 267,
+                          "id": 269,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "559:4:1",
+                          "src": "624:4:1",
                           "subdenomination": null,
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
@@ -1774,10 +1807,10 @@
                           },
                           "value": "true"
                         },
-                        "functionReturnParameters": 258,
-                        "id": 268,
+                        "functionReturnParameters": 260,
+                        "id": 270,
                         "nodeType": "Return",
-                        "src": "552:11:1"
+                        "src": "617:11:1"
                       }
                     ]
                   }
@@ -1786,14 +1819,14 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "66616c7365",
-                    "id": 271,
+                    "id": 273,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "584:5:1",
+                    "src": "649:5:1",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
@@ -1801,14 +1834,14 @@
                     },
                     "value": "false"
                   },
-                  "functionReturnParameters": 258,
-                  "id": 272,
+                  "functionReturnParameters": 260,
+                  "id": 274,
                   "nodeType": "Return",
-                  "src": "577:12:1"
+                  "src": "642:12:1"
                 }
               ]
             },
-            "id": 274,
+            "id": 276,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1816,16 +1849,16 @@
             "name": "compareHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 255,
+              "id": 257,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 252,
-                  "name": "test",
+                  "id": 254,
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "429:11:1",
+                  "scope": 276,
+                  "src": "490:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1833,10 +1866,10 @@
                     "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 251,
+                    "id": 253,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "429:6:1",
+                    "src": "490:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string storage pointer"
@@ -1847,45 +1880,45 @@
                 },
                 {
                   "constant": false,
-                  "id": 254,
-                  "name": "index",
+                  "id": 256,
+                  "name": "_test",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "442:10:1",
+                  "scope": 276,
+                  "src": "504:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 253,
-                    "name": "uint",
+                    "id": 255,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "442:4:1",
+                    "src": "504:6:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "428:25:1"
+              "src": "489:28:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 258,
+              "id": 260,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 257,
+                  "id": 259,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 274,
-                  "src": "475:11:1",
+                  "scope": 276,
+                  "src": "539:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1893,10 +1926,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 256,
+                    "id": 258,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "475:4:1",
+                    "src": "539:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1906,42 +1939,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "474:13:1"
+              "src": "538:13:1"
             },
-            "scope": 297,
-            "src": "408:187:1",
+            "scope": 299,
+            "src": "469:191:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 281,
+              "id": 283,
               "nodeType": "Block",
-              "src": "661:31:1",
+              "src": "726:31:1",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 279,
+                    "id": 281,
                     "name": "userCounter",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 226,
-                    "src": "675:11:1",
+                    "src": "740:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 278,
-                  "id": 280,
+                  "functionReturnParameters": 280,
+                  "id": 282,
                   "nodeType": "Return",
-                  "src": "668:18:1"
+                  "src": "733:18:1"
                 }
               ]
             },
-            "id": 282,
+            "id": 284,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1949,23 +1982,23 @@
             "name": "getNumberOfUsers",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 275,
+              "id": 277,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "626:2:1"
+              "src": "691:2:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 278,
+              "id": 280,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 277,
+                  "id": 279,
                   "name": "number",
                   "nodeType": "VariableDeclaration",
-                  "scope": 282,
-                  "src": "649:11:1",
+                  "scope": 284,
+                  "src": "714:11:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1973,10 +2006,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 276,
+                    "id": 278,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "649:4:1",
+                    "src": "714:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1986,19 +2019,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "648:13:1"
+              "src": "713:13:1"
             },
-            "scope": 297,
-            "src": "601:91:1",
+            "scope": 299,
+            "src": "666:91:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 295,
+              "id": 297,
               "nodeType": "Block",
-              "src": "777:50:1",
+              "src": "843:50:1",
               "statements": [
                 {
                   "expression": {
@@ -2010,29 +2043,29 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 289,
+                            "id": 291,
                             "name": "userHashes",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 224,
-                            "src": "794:10:1",
+                            "src": "860:10:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_UserHash_$220_storage_$",
-                              "typeString": "mapping(uint256 => struct AuthHash.UserHash storage ref)"
+                              "typeIdentifier": "t_mapping$_t_string_memory_$_t_struct$_UserHash_$220_storage_$",
+                              "typeString": "mapping(string memory => struct AuthHash.UserHash storage ref)"
                             }
                           },
-                          "id": 291,
+                          "id": 293,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 290,
-                            "name": "index",
+                            "id": 292,
+                            "name": "_dbID",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 284,
-                            "src": "805:5:1",
+                            "referencedDeclaration": 286,
+                            "src": "871:5:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
                             }
                           },
                           "isConstant": false,
@@ -2040,13 +2073,13 @@
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "IndexAccess",
-                          "src": "794:17:1",
+                          "src": "860:17:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_struct$_UserHash_$220_storage",
                             "typeString": "struct AuthHash.UserHash storage ref"
                           }
                         },
-                        "id": 292,
+                        "id": 294,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -2054,34 +2087,34 @@
                         "memberName": "hashInfo",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": 219,
-                        "src": "794:26:1",
+                        "src": "860:26:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
                         }
                       }
                     ],
-                    "id": 293,
+                    "id": 295,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "TupleExpression",
-                    "src": "793:28:1",
+                    "src": "859:28:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 288,
-                  "id": 294,
+                  "functionReturnParameters": 290,
+                  "id": 296,
                   "nodeType": "Return",
-                  "src": "786:35:1"
+                  "src": "852:35:1"
                 }
               ]
             },
-            "id": 296,
+            "id": 298,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -2089,50 +2122,50 @@
             "name": "getUserHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 285,
+              "id": 287,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 284,
-                  "name": "index",
+                  "id": 286,
+                  "name": "_dbID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 296,
-                  "src": "719:10:1",
+                  "scope": 298,
+                  "src": "784:12:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string memory"
                   },
                   "typeName": {
-                    "id": 283,
-                    "name": "uint",
+                    "id": 285,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "719:4:1",
+                    "src": "784:6:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string storage pointer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "718:12:1"
+              "src": "783:14:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 288,
+              "id": 290,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 287,
+                  "id": 289,
                   "name": "_userHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 296,
-                  "src": "758:17:1",
+                  "scope": 298,
+                  "src": "824:17:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2140,10 +2173,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 286,
+                    "id": 288,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "758:7:1",
+                    "src": "824:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -2153,20 +2186,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "757:19:1"
+              "src": "823:19:1"
             },
-            "scope": 297,
-            "src": "698:129:1",
+            "scope": 299,
+            "src": "763:130:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 298,
-        "src": "28:802:1"
+        "scope": 300,
+        "src": "28:868:1"
       }
     ],
-    "src": "0:832:1"
+    "src": "0:898:1"
   },
   "compiler": {
     "name": "solc",
@@ -2176,10 +2209,10 @@
     "5779": {
       "events": {},
       "links": {},
-      "address": "0x102e2b25b24f3defcd5a3409d307fa581e8f7067",
-      "transactionHash": "0x0675684e6e8dce0b96e5bb3b5d1948197795c914595c87dfcf78a6b9fdd046fc"
+      "address": "0xc5e0faf76a232a278ba1ba6ea54b5d506682ff11",
+      "transactionHash": "0xc7217782ca2bfa6ceed1632705720989db06bd2aad27718f47170ebdf3457da1"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-10-27T01:20:15.796Z"
+  "updatedAt": "2019-11-04T14:46:00.625Z"
 }
