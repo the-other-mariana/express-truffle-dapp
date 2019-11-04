@@ -1,0 +1,25 @@
+<div class="row panel panel-success">
+
+  <div class="panel-heading"><h4>Hello, {{ user }}. This is your Transaction Information: </h4></div>
+  <div class="panel-body">
+    <div id = "audit-info">
+
+    </div>
+  </div>
+
+  <div id="auditTemplate" style="display: none;">
+    <div class="panel-body">
+      <strong>Transaction Hash:</strong> <span class="trans-hash"></span><br/>
+      <strong>Block Hash:</strong> <span class="block-hash"></span><br/>
+      <strong>Block Number:</strong> <span class="block-number"></span><br/>
+
+      <strong>From:</strong> <span class="from"></span><br/>
+      <strong>To:</strong> <span class="to"></span><br/>
+      <strong>Gas Used:</strong> <span class="gas-used"></span><br/>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/update-audit-info.js"></script>

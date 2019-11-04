@@ -14,6 +14,7 @@ var contractAuth;
 var settingup = false;
 
 const mongo = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 const url = 'mongodb://localhost:27017/test';
 var assert = require('assert');
 
@@ -113,6 +114,7 @@ router.post('/login', function(req, res, next){
   var loginpassword = req.body.loginpassword;
   var exists = false;
   var userID = "";
+  var objectID;
 
   mongo.connect(url, function(err, db){
     if(err != null){
@@ -124,6 +126,7 @@ router.post('/login', function(req, res, next){
       if (doc.username == loginusername && doc.password == loginpassword){
         exists = true;
         userID = (doc._id).toString();
+        objectID = doc._id;
       }
     }, function(){
       db.close();
@@ -136,11 +139,13 @@ router.post('/login', function(req, res, next){
         if(exists == true && same == true){
           req.session.success = true;
           req.session.user = loginusername;
-          console.log("successfull validation");
+          req.session.mongoID = objectID;
+          console.log("successfull validation of " + objectID);
           res.redirect('/');
         }else{
           req.session.success = false;
           req.session.user = "";
+          req.session.mongoID = null;
           res.redirect('/');
           console.log("unsuccessfull validation");
         }
@@ -174,6 +179,25 @@ router.post('/market', function(req, res, next){
   req.session.errors = null;
 });
 
+router.post('/audit', function(req, res, next){
+  res.render('audit', { title: 'Audit Section', errors: req.session.errors, user: req.session.user});
+  req.session.errors = null;
+});
+
+// for AJAX resource
+router.get('/audit-info', function(req, res, next) {
+
+  // mongo db get data
+  mongo.connect(url, function(err, db){
+    db.collection('user-data').findOne( { _id : new ObjectID(req.session.mongoID) }, function(err, user) {
+      res.send(user);
+      db.close();
+    });
+  });
+
+
+});
+
 // if user wants to reload page:
 router.get('/market', function(req, res, next){
   res.render('blockchain-market', { title: 'Market', errors: req.session.errors });
@@ -187,6 +211,7 @@ router.post('/register/submit-account', function(req, res, next){
   var loggedUser = req.session.user;
   var coinbase;
   var userID = "";
+  var objectID = null;
 
   if(typeof loggedUser === 'undefined'){
     loggedUser = "none";
@@ -196,7 +221,8 @@ router.post('/register/submit-account', function(req, res, next){
   var item = {
     username: inputUsername,
     password: inputPassword,
-    isSuperUser: false
+    isSuperUser: false,
+    auditInfo: null
   };
   mongo.connect(url, function(err, db){
     var superuser = null;
@@ -210,9 +236,9 @@ router.post('/register/submit-account', function(req, res, next){
         // add it to db
         db.collection('user-data').insertOne(item, function(err, result){
           userID = (result.insertedId).toString();
+          objectID = result.insertedId;
           assert.equal(null, err);
           console.log('Item inserted, id:' + (result.insertedId).toString());
-          db.close();
 
           // add it to bc
           web3.eth.getCoinbase(function(err, account){
@@ -227,7 +253,20 @@ router.post('/register/submit-account', function(req, res, next){
             }).then(function(user){
               console.log("user: ");
               console.log(user);
-              res.redirect("/");
+
+              var auditInfo = {
+                transactionHash: user.receipt.transactionHash,
+                blockHash: user.receipt.blockHash,
+                blockNumber: user.receipt.blockNumber,
+                from: user.receipt.from,
+                to: user.receipt.to,
+                gasUsed: user.receipt.gasUsed
+              };
+              db.collection('user-data').update({ _id: objectID }, { $set: { 'auditInfo' : auditInfo } }, function (e){
+                if(e) console.log(e);
+                res.redirect("/");
+                db.close();
+              });
             }).catch(function(err) {
               console.error(err.message);
             });
@@ -248,9 +287,9 @@ router.post('/register/submit-account', function(req, res, next){
             // add it to db
             db.collection('user-data').insertOne(item, function(err, result){
               userID = (result.insertedId).toString();
+              objectID = result.insertedId;
               assert.equal(null, err);
               console.log('Item inserted from super user');
-              db.close();
 
               // add it to bc
               web3.eth.getCoinbase(function(err, account){
@@ -263,7 +302,18 @@ router.post('/register/submit-account', function(req, res, next){
                 }).then(function(user){
                   console.log("user: ");
                   console.log(user);
-                  res.redirect("/");
+
+                  var auditInfo = {
+                    transactionHash: user.receipt.transactionHash,
+                    blockHash: user.receipt.blockHash,
+                    blockNumber: user.receipt.blockNumber
+                  }
+                  db.collection('user-data').update({ _id: objectID }, { $set: { 'auditInfo' : auditInfo } }, function (e){
+                    if(e) console.log(e);
+                    res.redirect("/");
+                    db.close();
+                  });
+
                 }).catch(function(err) {
                   console.error(err.message);
                 });
