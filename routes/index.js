@@ -95,7 +95,8 @@ router.get('/users', function(req, res, next) {
     }, function(){
       db.close();
       res.send(App.userslist);
-      console.log(App.userslist);
+      //console.log(App.userslist);
+      console.log("Update: " + App.userslist.length + " users")
     });
   });
 

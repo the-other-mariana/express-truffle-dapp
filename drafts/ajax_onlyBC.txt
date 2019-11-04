@@ -12,11 +12,6 @@ $(document).ready(function() {
         var usersRow = $('#usersRow');
 
         //$('#usersRow').html(data[0].username + ": " + data[0].password + " " + data[1].username + ": " + data[1].password);
-
-        if(data.length == 0){
-          usersRow.append("No users yet.");
-        }
-
         for(var i = 0; i < data.length; i++){
           var userTemplate = $('#userTemplate');
           userTemplate.find('.panel-title').text("User #" + i);
@@ -29,16 +24,10 @@ $(document).ready(function() {
     });
   }
 
-  loadInfo();
-
-  setInterval(function(){
-    loadInfo(); // this will run after every 1 second
-  }, 3000);
-
-  /*
+  //loadInfo();
     $("#users-button").click((e) => {
       e.preventDefault();
       loadInfo();
     });
-    */
+
 });
