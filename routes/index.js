@@ -51,6 +51,7 @@ router.get('/', function(req, res, next) {
     });
   });
 
+  // get number of user hashes in bc
   var authHashInstance;
   App.contracts.AuthHash.deployed().then(function(instance){
     authHashInstance = instance;
@@ -80,6 +81,7 @@ router.post('/restart-db', function(req, res, next){
 
 // for AJAX resource
 router.get('/users', function(req, res, next) {
+
   // mongo db get data
   App.userslist = [];
   mongo.connect(url, function(err, db){
@@ -96,6 +98,7 @@ router.get('/users', function(req, res, next) {
       console.log(App.userslist);
     });
   });
+
 });
 
 // goes here if we type localhost:8000/users/detail
@@ -141,7 +144,6 @@ router.post('/login', function(req, res, next){
           console.log("unsuccessfull validation");
         }
       });
-
     });
   });
 
@@ -163,6 +165,7 @@ router.post('/register', function(req, res, next){
     });
   });
   req.session.errors = null;
+
 });
 
 router.post('/market', function(req, res, next){
@@ -196,8 +199,6 @@ router.post('/register/submit-account', function(req, res, next){
   };
   mongo.connect(url, function(err, db){
     var superuser = null;
-
-
     assert.equal(null, err);
     db.collection('user-data').count().then((count) => {
       console.log("number of users from db: " + count);
@@ -245,7 +246,7 @@ router.post('/register/submit-account', function(req, res, next){
           if(loggedUser == superuser){
             // add it to db
             db.collection('user-data').insertOne(item, function(err, result){
-              userID = result._id;
+              userID = (result.insertedId).toString();
               assert.equal(null, err);
               console.log('Item inserted from super user');
               db.close();
@@ -276,7 +277,6 @@ router.post('/register/submit-account', function(req, res, next){
         });
       }
     });
-
   });
 });
 
