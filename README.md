@@ -33,7 +33,7 @@ You will see first the login page. On the bottom, the MongoDB registry of users 
 
 Whenever you reset all contracts, you should click on `Restart DB` to empty the MongoDB registry just as the Ganache one. They should have the same amount of users.<br />
 
-If you click on `Register`, you will be able to type the username and password of a new user, like below.<br />
+If you click on `Register`, you will be able to type the username and password of a new user, like below. Keep in mind that only the super user can add a new user, and this is validated by the blockchain using the account hash of whoever is calling the new user transaction.<br />
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/register-user.png?raw=true)<br />
 
