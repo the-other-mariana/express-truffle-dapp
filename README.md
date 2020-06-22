@@ -45,7 +45,7 @@ If you sign in as the new user, you will enter the main page, given the validati
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/main-mariana.png?raw=true)<br />
 
-Here, you can choose to see the Transaction Information by clicking on `Auth` button. This will take you to the following page, which shows the corresponding user registration information that was stored when the blockchain added the user.<br />
+Here, you can choose to see the Transaction Information by clicking on `Audit` button. This will take you to the following page, which shows the corresponding user registration information that was stored when the blockchain added the user.<br />
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/audit-mariana.png?raw=true)<br />
 
@@ -66,3 +66,7 @@ To stop the server, go to Powershell and type `Ctrl + C`.
 The language for smart contracts in this dapp is `Solidity`. To add a smart contract, first create a file using `.sol` extension in the `contracts` folder. Write your code in Solidity and then, go to the file `migrations/2_deploy_contracts.js` and use the function `deployer.deploy()` as with the other contracts. <br />
 
 The file `routes/index.js` is where most of the backend's smart contract use is done.<br />
+
+## Blockchain Market
+
+The Market section uses Metamask for the account notifications.<br />
