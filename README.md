@@ -1,6 +1,6 @@
 # Blockchain Decentralized Application
 
-The following project is a small decentralized application that basically showcases the use of blockchain as a secondary data base alongside an offchain database with MongoDB. <br />
+The following project is a small decentralized application that basically showcases the use of blockchain as a secondary data base alongside an offchain database with MongoDB. The application consists in a login using smart contracts, which means using truffle contracts in the backend. <br />
 
 The usage of blockchain as a secondary database is the following: every time a user sings in in the login, after knowing the user is valid according to MongoDB registry, the hash of the login input is compared to blockchain's registry and only if this is validated, the user is able to access safely.
 
@@ -60,3 +60,9 @@ Finally, you can access the Blockchain Market where you will be able to sell and
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/market.png?raw=true)<br />
 
 To stop the server, go to Powershell and type `Ctrl + C`.
+
+## Smart Contracts in Solidity
+
+The language for smart contracts in this dapp is `Solidity`. To add a smart contract, first create a file using `.sol` extension in the `contracts` folder. Write your code in Solidity and then, go to the file `migrations/2_deploy_contracts.js` and use the function `deployer.deploy()` as with the other contracts. <br />
+
+The file `routes/index.js` is where most of the backend's smart contract use is done.<br />
