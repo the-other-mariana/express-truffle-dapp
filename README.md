@@ -23,7 +23,7 @@ Turn on MongoDB service. Search for `services` inside your computer. Right click
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/services.png?raw=true)<br />
 
-Go to Windows Powershell, and enter to the project's folder. Once there, type: `truffle console --network ganache` to enter Truffle Console. Then, type `migrate --compile-all --reset` to compile the Smart contracts (do this everytime you change a contract). This also delets any registry in the blockchain. Finally, type `.exit` exit the console. <br />
+Go to Windows Powershell, and enter to the project's folder. Once there, type: `truffle console --network ganache` to enter Truffle Console. Then, type `migrate --compile-all --reset` to compile the Smart contracts (do this everytime you change a contract). This also delets any registry in the blockchain. Finally, type `.exit` to exit the console. <br />
 
 Now, start the server. Type `npm start` on your Powershell. This is equivalent to typing `node ./bin/www`. On this file, you will see the port for the project is `3000`. <br />
 
@@ -41,7 +41,7 @@ When you confirm the new user, you get redirected to the login page, where you w
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/login-1-user.png?raw=true)<br />
 
-If you sign in as the new user, you will enter the main page, given the validation using the blockchain has registry.<br />
+If you sign in as the new user, you will enter the main page, given the validation using the blockchain hash registry.<br />
 
 ![alt text](https://github.com/the-other-mariana/express-truffle-dapp/blob/master/screen_caps/main-mariana.png?raw=true)<br />
 
