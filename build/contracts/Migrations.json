@@ -1387,10 +1387,10 @@
     "5779": {
       "events": {},
       "links": {},
-      "address": "0xc7b3807094a380a04412fad3903abe53ec3b21b3",
-      "transactionHash": "0xa59bde36ee48c906779f435aa16be5762e6ee26e568d08423d6c1c811843d03b"
+      "address": "0xd4d78136069e30a0cf5350fbeeea38e70db361aa",
+      "transactionHash": "0x1dc74d62ef552864666334d7c0ccd989c44df8d3cf1e7594e68ebcfb379e71c4"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2019-11-04T19:00:21.038Z"
+  "updatedAt": "2020-06-22T00:20:54.098Z"
 }
