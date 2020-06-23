@@ -13,11 +13,14 @@ NodeJS version: `10.15.3`<br />
 `mongodb` version: `2.2.33`<br />
 `truffle-contract` version: `4.0.31`<br />
 	`web3` version: `1.2.1`<br />
-`ganache-cli` version: `6.7.0`<br />
+`ganache-cli` version: `6.7.0`
+<br />
+
+The folder `node_modules` was uploaded to this repo because if you try to install `web3` using `npm`, you might encounter some bug in certain web3 packages and it might not work. That is why I suggest to download this full folder from here as well.<br />
 
 ## Usage
 
-After installing all dependencies, the first thing to do is download [Ganache Quickstart](https://www.trufflesuite.com/docs/ganache/quickstart) for desktop version. Once installed, turn on your Ganache environment (click on Quickstart). <br />
+After downloading this repo to your local directory, the next thing to do is to download [Ganache Quickstart](https://www.trufflesuite.com/docs/ganache/quickstart) for desktop version. Once installed, turn on your Ganache environment (click on Quickstart). <br />
 
 Turn on MongoDB service. Search for `services` inside your computer. Right click on MongoDB Server and choose Start.<br />
 
